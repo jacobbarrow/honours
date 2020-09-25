@@ -8,7 +8,7 @@ output:
 # Initial Project Overview
 
 ## Overview of project content and milestones
-The aim of the project is to create and evaluate a method of determining if the headline of a news article appropriately reflects its content. 
+A recent phenomenon that has made its way into public perception is that of 'fake news' - misleading and deceptive information that can sway political opinion, manufacture outrage and split society. The aim of this project is to create and evaluate a method of determining if the headline of a news article appropriately reflects its content, which could offer a way to track and analyse the dissemination of misinformation.
 
 The project will have several milestones. Firstly, a literature review will be undertaken that both analyses existing solutions, as well as exploring the problem space more generally. Then a prototype solution will be created, after which it will be tested and refined. Finally, the results and effiacy of the solution will be analysed and conclusions drawn.
 
