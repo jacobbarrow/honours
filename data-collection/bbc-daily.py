@@ -31,10 +31,6 @@ try:
 except sqlite3.OperationalError:
     db_cursor.execute(create_table_sql)
 
-
-# Used to convert month string to int
-months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
-
 feeds = ['news/rss.xml', 'news/world/rss.xml', 'news/uk/rss.xml']
 
 for feed in feeds:
