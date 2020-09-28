@@ -14,7 +14,7 @@ fh.setLevel(logging.DEBUG)
 logger.addHandler(fh)
 
 # Set up database
-db = sqlite3.connect('bbc-daily-top-stories.sqlite')
+db = sqlite3.connect('bbc-daily.sqlite')
 db_cursor = db.cursor()
 
 create_table_sql = """
