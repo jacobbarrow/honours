@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 logger = logging.getLogger('bbc-daily')
 logger.setLevel(logging.DEBUG)
-fh = logging.FileHandler('bbc-daily.log')
+fh = logging.FileHandler('daily.log')
 fh.setLevel(logging.DEBUG)
 logger.addHandler(fh)
 
@@ -96,7 +96,7 @@ for feed in feeds:
 
         except Exception:
             print('{0}: {1}'.format(article_url, sys.exc_info()))
-            logger.warning('[{0}] {1}: {2}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), article_url, sys.exc_info()))
+            logger.warning('[BBC@{0}] {1}: {2}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), article_url, sys.exc_info()))
             
 
 db.close()
