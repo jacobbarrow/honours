@@ -9,8 +9,8 @@ import hashlib
 
 from bs4 import BeautifulSoup
 
-TIME_BETWEEN_REQUESTS = 30 # Don't want to spam, so give some breathing space (seconds)
-START_DATE = date(2011, 2, 4)
+TIME_BETWEEN_REQUESTS = 15 # Don't want to spam, so give some breathing space (seconds)
+START_DATE = date(2011, 2, 9)
 END_DATE = date(2020, 1, 1)
 
 
@@ -75,7 +75,7 @@ for dt in daterange(START_DATE, END_DATE):
                 already_scraped = db_cursor.fetchone()[0]
 
                 if not already_scraped:
-                    article_request = requests.get("https://www.independent.co.uk{0}".format(article_url), headers=user_agent_header)
+                    article_request = requests.get("https://www.independent.co.uk{0}".format(article_url), timeout=5, headers=user_agent_header)
                     article_soup = BeautifulSoup(article_request.content, features='lxml')
 
                     article_inner = article_soup.find('div', class_="body-content")
