@@ -37,7 +37,7 @@ except sqlite3.OperationalError:
 # Used to convert month string to int
 months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
 
-feeds = ['home/index.rss', 'news/index.rss', 'news/articles.rss']
+feeds = ['news/index.rss', 'news/articles.rss']
 
 for feed in feeds:
     print('Scraping feed {0}'.format(feed))
