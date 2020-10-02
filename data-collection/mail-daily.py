@@ -64,27 +64,22 @@ for feed in feeds:
             if not already_scraped:
                 article_request = requests.get(article_url)
 
-                article_soup = BeautifulSoup(article_request.content, features='html5lib')
+                article_soup = BeautifulSoup(article_request.content, features='lxml')
                 article_headline = article_soup.find('h2').get_text().strip()
 
                 # Article body
                 article_inner = article_soup.find('div', {'itemprop': 'articleBody'})
 
+                article_body = ""
+                for p in article_inner.find_all('p'):
+                    article_body += '{0}\n'.format(p.get_text())
 
                 try:
-                    article_body = ""
-                    for p in article_inner.find_all('p'):
-                        article_body += '{0}\n'.format(p.get_text())
-
-                    try:
-                        db_cursor.execute('INSERT INTO articles (id, headline, body, date) VALUES (?,?,?,?)', (article_id, article_headline, article_body, article_date))
-                        db.commit()
-                        print("added {0}".format(article_headline[:30]))
-                    except sqlite3.IntegrityError:
-                        print('already added {0}'.format(article_headline))
-
-                except AttributeError:
-                    print('Rate limited! ({0})'.format(article_url))
+                    db_cursor.execute('INSERT INTO articles (id, headline, body, date) VALUES (?,?,?,?)', (article_id, article_headline, article_body, article_date))
+                    db.commit()
+                    print("added {0}".format(article_headline[:30]))
+                except sqlite3.IntegrityError:
+                    print('already added {0}'.format(article_headline))
 
 
         except Exception:
