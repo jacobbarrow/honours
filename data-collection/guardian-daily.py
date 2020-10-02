@@ -37,10 +37,11 @@ except sqlite3.OperationalError:
 # Used to convert month string to int
 months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
 
-feeds = ['uk/rss']
+feeds = ['uk/rss', 'world/rss']
 
 for feed in feeds:
-    print('scraping {0}'.format(feed))
+    logger.debug('[GUARDIAN@{0}] Scraping {1}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), feed))
+
 
     feed_request = requests.get('https://www.theguardian.com/{0}'.format(feed))
     feed_soup = BeautifulSoup(feed_request.content, features='lxml')

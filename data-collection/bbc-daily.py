@@ -34,7 +34,7 @@ except sqlite3.OperationalError:
 feeds = ['news/rss.xml', 'news/world/rss.xml', 'news/uk/rss.xml']
 
 for feed in feeds:
-    print('scraping {0}'.format(feed))
+    logger.debug('[BBC@{0}] Scraping {1}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), feed))
 
     feed_request = requests.get('http://feeds.bbci.co.uk/{0}'.format(feed))
     feed_soup = BeautifulSoup(feed_request.content, features='lxml')
