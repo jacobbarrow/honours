@@ -7,5 +7,8 @@ Scrapes every article from every day from BBC's [On This Day](http://news.bbc.co
 * `bbc-daily`  
 Scrapes every article from the BBC's [top stories feed](http://feeds.bbci.co.uk/news/rss.xml), the world's top stories feed and the UK's top stories feed.
 
-* `guardian-daily`
-Scrapes everything from the Guardian's UK and world RSS feed
+* `guardian-daily`  
+Scrapes everything from the Guardian's UK and world RSS feeds
+
+* `mail-daily`  
+Scrapes everything from the Daily Mail's Top, Latest and Home RSS feeds
