@@ -11,4 +11,7 @@ Scrapes every article from the BBC's [top stories feed](http://feeds.bbci.co.uk/
 Scrapes everything from the Guardian's UK and world RSS feeds
 
 * `mail-daily`  
-Scrapes everything from the Daily Mail's Top, Latest and Home RSS feeds
+Scrapes everything from the Daily Mail's Top and Latest articles RSS feeds
+
+* `independent-archive`  
+Slowly collects everything from the Independent archives
