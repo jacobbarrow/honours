@@ -13,5 +13,8 @@ Scrapes everything from the Guardian's UK and world RSS feeds
 * `mail-daily`  
 Scrapes everything from the Daily Mail's Top and Latest articles RSS feeds
 
+* `huffpost-daily`  
+Scrapes everything from the Huffington Post's RSS feed
+
 * `independent-archive`  
 Slowly collects everything from the Independent archives
