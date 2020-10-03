@@ -34,9 +34,6 @@ except sqlite3.OperationalError:
     db_cursor.execute(create_table_sql)
 
 
-# Used to convert month string to int
-months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
-
 feeds = ['news/index.rss', 'news/articles.rss']
 
 for feed in feeds:
@@ -84,7 +81,7 @@ for feed in feeds:
 
         except Exception:
             print('{0}: {1}'.format(article_url, sys.exc_info()))
-            logger.warning('[GUARDIAN@{0}] {1}: {2}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), article_url, sys.exc_info()))
+            logger.warning('[MAIL@{0}] {1}: {2}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), article_url, sys.exc_info()))
                 
 
 db.close()
