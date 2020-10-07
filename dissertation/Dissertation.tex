@@ -66,29 +66,23 @@ Insert acknowledgements here
 
 
 \section{Introduction}
-You can fill out sections as you please.
 
 
 \subsection{Overview Of Project Milestones}
 
-This is a sub sub section with a list of bullet points.
-\begin{itemize}\itemsep0pt
-	\item A working X, that will be used for this investigation.
-	\item Investigation of current tools and their potential use during an investigation of X .
-	\item Programming of X with related frameworks Y and Z.
-	\item That is all.
-\end{itemize}
-
 
 \section{Background Research}
+\subsection{The Problem with Incongruence}
+
+
+For people who read beyond the headlines - \citeA{ecker2014} ran experiments that investigated how headlines effect the processing of the facts in news "Information that is initially accepted as valid but is later foundto be incorrect can have a persistent influence on people’s memoryand reasoning"
+
+\citeA{chesney2017} talk about the differences between clickbait, fake news, sensationalism and incongruent headlines. Also covers the need for a decent labelled dataset
 
 \subsection{Existing Approaches}
 A range of studies have already considered several aspects of this project.
 
 \citeA{manjesh2017} used Natural Language Processing (NLP) to identify 'clickbait' headlines, however they did not consider the headline's relationship to the article.
-
-\citeA{}
- 
 
 
 \subsection{Possible Approaches}
@@ -113,7 +107,7 @@ As well as archives, current news was also collected from a range of publishers.
 
 Table \ref{tab:data-sources} shows the full list of data sources collected, as well as the time range they cover and the total records obtained.
 
-\begin{table}[]
+\begin{table}[h]
 \begin{tabular}{llll}
 \textbf{Publisher} & \textbf{Earliest} & \textbf{Latest} & \textbf{Total} \\
 BBC (Archive) & 1950-01-21 & 2005-12-11 & 1857 \\
@@ -136,7 +130,7 @@ In addition, some sites implemented a strict rate-limit on requests - to make a 
 \subsection{Ethics}
 Across a variety of datasets, XXX articles were collected for analysis. This is a substantial amount of data, and represents the work of many individual journalists and news publishers. 
 
-While automated techniques were used to collect the data, everything collected was publically accessiable. In addition, it is legal to make a digital copy of copyrighted data for non-commercial research \cite{web_govcopyright}. Even so, care still needs to be taken in the obtainment of the data in order to avoid overloading or altering the regular service of these archives. As mentioned above, requests were rate-limited to avoid inadvertant denial of service attack, and spread out over a long period of time. Additionally, the rolling news was only collected once per day, at midnight, in order to minimise the impact of the scraping.
+While automated techniques were used to collect the data, everything collected was publically accessiable. In addition, it is legal to make a digital copy of copyrighted data for non-commercial research \footnote{\url{https://www.gov.uk/guidance/exceptions-to-copyright#text-and-data-mining-for-non-commercial-research}}. Even so, care still needs to be taken in the obtainment of the data in order to avoid overloading or altering the regular service of these archives. As mentioned above, requests were rate-limited to avoid inadvertant denial of service attack, and spread out over a long period of time. Additionally, the rolling news was only collected once per day, at midnight, in order to minimise the impact of the scraping.
 
 
 \bibliographystyle{apacite}
