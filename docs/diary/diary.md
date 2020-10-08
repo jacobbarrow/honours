@@ -34,3 +34,16 @@ We covered quite a bit in this meeting. I went over the data collection work I'd
 Simon suggested a few NLP libraries I could look into - NLTK and SpaCy being prime candidates for this work. I also talked about my reluctance around reading articles and starting the literature review, and Simon gave some advice for reading and avoiding procrastination 
 
 Possible future work was also discussed - the real world implications of misinformation, creating a tool to help individuals verify the articles they're reading aren't trying to mislead them, and also looking at how language use predisposes reactions, for instance how car collisions with bicycles are predominantly described as 'accidents' in the media.
+
+## Week 5 (7/10/20)
+
+### Progress since last meeting
+I did some very rough initial research, collecting a few articles and collating them in the dissertation document. I also added some headings and cleaned up the template a bit.
+I found The Independent's full archive, and set up a Python script to slowly scrape through an estimated 300,000 articles.
+
+### Meeting notes
+I talked about the possibility of creating a small one-page site to allow anonymous volunteers to label the dataset, although I was concious of the time. Simon commented that while a labelled dataset is always useful, if I'm going with NLP then it's not a requirement. However, as we're so early on in the project, there is time to go down a few routes like this, so I will probably make a quick prototype of the site.
+
+We also talked about the rough draft I had created, and the need for an introduction and good examples of the problem I'm trying to tackle.
+
+We briefly covered summarisation as a technique to help analyise big chunks of text, but I'll have to do some tests to see whether the meaning of the article is lost once condensed.
