@@ -64,32 +64,10 @@ Insert acknowledgements here
 	I would like to thank...
 \newpage
 
-
-\section{Introduction}
-
-
-\subsection{Overview Of Project Milestones}
-
-
-\section{Background Research}
-\subsection{The Problem with Incongruence}
-
-
-For people who read beyond the headlines - \citeA{ecker2014} ran experiments that investigated how headlines effect the processing of the facts in news "Information that is initially accepted as valid but is later foundto be incorrect can have a persistent influence on people’s memoryand reasoning"
-
-\citeA{chesney2017} talk about the differences between clickbait, fake news, sensationalism and incongruent headlines. Also covers the need for a decent labelled dataset
-
-\subsection{Existing Approaches}
-A range of studies have already considered several aspects of this project.
-
-\citeA{manjesh2017} used Natural Language Processing (NLP) to identify 'clickbait' headlines, however they did not consider the headline's relationship to the article.
-
-
-\subsection{Possible Approaches}
-\subsubsection{Neural Networks and Deep Learning}
-\subsubsection{Natural Language Processing}
+\input{./Dissertation-LitReview.tex}
 
 \section{Data Collection}
+\citeA{chesney2017} covers the need for a decent labelled dataset.
 
 \subsection{Attributes}
 Before collecting the data, it's important to decide what form it'll take and what attributes will be stored.
@@ -115,6 +93,7 @@ The Independent (Archive) & 2011-01-01 & XXX & XXX \\
 BBC (Daily) & 2019-04-18 & XXX & XXX \\
 Daily Mail (Daily) & 2019-09-24 & XXX & XXX \\
 The Guardian (Daily) & 2020-06-25 & XXX & XXX \\
+Huffington Post (Daily) & XXX & XXX & XXX \\
 \end{tabular}
 \caption{Extents of the data sources collected}
 \label{tab:data-sources}
@@ -123,7 +102,7 @@ The Guardian (Daily) & 2020-06-25 & XXX & XXX \\
 \subsection{Obtaining the Data} \label{obtaining-data}
 To collect the data, several Python scripts were created. For the daily news, the publishers' various RSS feeds were consulted, and for the archives a more customised approach was taken.
 
-These scripts utilise the BeautifulSoup library to parse each article's webpage and scrape them for the headline, date and body text. As each publisher builds their websites using different design patterns and with different technologies, each script had to be tailor made to fit the page structure.
+These scripts utilise the BeautifulSoup library to parse each article's webpage and scrape them for the headline, date and body text. As each publisher builds their websites using different design patterns and with different technologies, each script had to be tailor made to fit the page structure. All the scripts used are available in this project's GitHub repository\footnote{\url{https://github.com/jacobbarrow/honours/tree/master/data-collection}}.
 
 In addition, some sites implemented a strict rate-limit on requests - to make a copy of The Independent's archive took around XXX days to complete, scraping one article every 15 seconds. 
 
