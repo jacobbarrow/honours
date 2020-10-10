@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Labelling</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <main>
+        <h1>An investigation into headline congruence</h1>
+        <p class="note">Please read the below article and use the buttons at the bottom of the page to indicate whether the headline matches the content.</p>
+        <hr>
+        <h2>Police linked to crime gangs deleted records</h2>
+        <p>Police intelligence reports and details of operations were deleted by corrupt serving and former police officers, according to a secret report that has been passed to the Leveson Inquiry.</p>
+        <p>The eight-page report by the Serious Organised Crime Agency (SOCA) was written in 2008 and detailed how private investigators with links to crime gangs tried to discover the identities of informants and witnesses under police protection.</p><p>Corrupt officers and former officers were used by the private detectives, who the SOCA report warned "threaten to undermine the criminal justice system".</p>
+        <p>The report, which was seen by Channel 4, analysed five police operations and stated: "Four of the operations provided examples of corrupt individuals including serving and former police officers, a bank employee, employees in a communications service provider, a public service employee, and a HM Prison Service Employee. All of these were used by private investigators to facilitate access to information."</p>
+        <p>Bob Quick, the former head of anti-corruption at the Metropolitan Police, told Channel 4 News: "There were occasions where cases involved officers removing evidence, destroying evidence. This was infrequent but when it occurred it was serious. There were indications that that relationships existed with private investigators and ex-police officers who were suspected of corruption."</p>
+        <p>In two operations analysed by SOCA it was found that activities by private investigators, or people acting for them, included accessing the Police National Computer, making unauthorised checks on vehicles, accessing details of criminal investigations, and attempting to track down witnesses.</p>
+        <p>The uncovering of the report, which was excluded from Freedom of Information requests, raises the question of whether the private investigation industry should be regulated. In 2001 the government gave itself the power to license the industry but has not acted on it, although the Home Office said last night that it was under consideration.</p>
+
+        <hr>
+        
+        <h3>Do you think the article's body accurately portrays its headline?</h3>
+        <div class="rating-container">
+            <span class="negative">Not at all</span>
+            <div class="rating">
+                <div class="option negative big" data-rating="0"><span>&check;</span></div>
+                <div class="option negative medium" data-rating="1"><span>&check;</span></div>
+                <div class="option negative small" data-rating="2"><span>&check;</span></div>
+                <div class="option neutral selected" data-rating="3"><span>&check;</span></div>
+                <div class="option positive small" data-rating="4"><span>&check;</span></div>
+                <div class="option positive medium" data-rating="5"><span>&check;</span></div>
+                <div class="option positive big" data-rating="6"><span>&check;</span></div>
+            </div>
+            <span class="positive">A perfect match</span>
+        </div>
+        
+        <form>
+            <input type="hidden" id="rating" name="rating" value="3">
+            <input type="submit" value="Submit Rating">
+        </form>
+        <hr>
+        <p class="note">Aside from the rating you give, no data from your visit is retained. If you have any questions, concerns or comments, please feel free to email Jacob at 4033760@live.napier.ac.uk</p>
+
+    </main>
+    <script src="rating.js"></script>
+</body>
+</html>
