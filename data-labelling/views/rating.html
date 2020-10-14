@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Labelling</title>
-    <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <main>
-        <h1>An investigation into headline congruence</h1>
-        <p class="note">Please read the below article and use the buttons at the bottom of the page to indicate whether the headline matches the content.</p>
-        <hr>
-        <h2>Police linked to crime gangs deleted records</h2>
+        <h1>Police linked to crime gangs deleted records</h1>
         <p>Police intelligence reports and details of operations were deleted by corrupt serving and former police officers, according to a secret report that has been passed to the Leveson Inquiry.</p>
         <p>The eight-page report by the Serious Organised Crime Agency (SOCA) was written in 2008 and detailed how private investigators with links to crime gangs tried to discover the identities of informants and witnesses under police protection.</p><p>Corrupt officers and former officers were used by the private detectives, who the SOCA report warned "threaten to undermine the criminal justice system".</p>
         <p>The report, which was seen by Channel 4, analysed five police operations and stated: "Four of the operations provided examples of corrupt individuals including serving and former police officers, a bank employee, employees in a communications service provider, a public service employee, and a HM Prison Service Employee. All of these were used by private investigators to facilitate access to information."</p>
@@ -22,7 +18,7 @@
 
         <hr>
         
-        <h3>Do you think the article's body accurately portrays its headline?</h3>
+        <h2>Does the article's body accurately portrays its headline?</h2>
         <div class="rating-container">
             <span class="negative">Not at all</span>
             <div class="rating">
@@ -37,14 +33,14 @@
             <span class="positive">A perfect match</span>
         </div>
         
-        <form>
+        <form method="post">
+            <input type="hidden" name="article_id" value="XXX">
+            <input type="hidden" id="time_taken" name="time_taken">
             <input type="hidden" id="rating" name="rating" value="3">
             <input type="submit" value="Submit Rating">
         </form>
-        <hr>
-        <p class="note">Aside from the rating you give, no data from your visit is retained. If you have any questions, concerns or comments, please feel free to email Jacob at 4033760@live.napier.ac.uk</p>
 
     </main>
-    <script src="rating.js"></script>
+    <script src="{{ url_for('static', filename='rating.js') }}"></script>
 </body>
 </html>
