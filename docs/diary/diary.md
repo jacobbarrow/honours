@@ -47,3 +47,18 @@ I talked about the possibility of creating a small one-page site to allow anonym
 We also talked about the rough draft I had created, and the need for an introduction and good examples of the problem I'm trying to tackle.
 
 We briefly covered summarisation as a technique to help analyise big chunks of text, but I'll have to do some tests to see whether the meaning of the article is lost once condensed.
+
+## Week 6 (14/10/20)
+
+### Progress since last meeting
+I've collected 45k articles so far, so am starting to have a healthy dataset to work on. I've also created a very basic html skeleton for a data labelling website, and I've added some examples of fake news, sensationalism and clickbait to the lit review.
+
+## Meeting notes
+
+We covered possible future applications of the work, such as detecting personal information, monitoring hate speech and generating a measure for the trustworthiness of a website. 
+
+We discussed a lot about the data labelling side of things, too. Simon suggested that another avenue could be relabelling an exisitng dataset, although as I'm in the process of building one up at the moment it makes more sense to label the new one. 
+Deciding a good subset of the data to label posed a problem - it'd be good to get more than one rating for each, so an average could be taken. If the subset's too large, then not enough ratings may come in, if it's too small then there won't be enough data to provide a meaningful evaluation.
+During the meeting, I had the idea to also time how long someone takes to read an article, as there could be a wealth of trends to be discovered, but at the same time I don't want to collect more information than I need. I also asked Simon for a VM to host the labelling site on. 
+
+In the coming week, I'll aim to get the labelling site in a publishable state, as well as working more on the lit review.
