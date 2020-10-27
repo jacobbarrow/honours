@@ -1,4 +1,5 @@
-from flask import Flask, url_for, render_template, request
+from flask import Flask, url_for, render_template, request, redirect
+import ratings
 
 app = Flask(__name__, template_folder='views')
 
@@ -8,15 +9,19 @@ def showDisclaimer():
 
 @app.route('/rating', methods=['GET'])
 def showRating():
-    return render_template('rating.html')
+    article = ratings.getLeastRatedArticle()
+    return render_template('rating.html', article=article)
 
 @app.route('/rating', methods=['POST'])
 def submitRating():
     time_taken = request.form['time_taken']
     rating = request.form['rating']
     article_id = request.form['article_id']
-    return '<p>{0}</p><p>{1}</p><p>{2}</p>'.format(time_taken, rating, article_id)
+
+    ratings.add(article_id, rating, time_taken)
     
+    return redirect(url_for('showRating'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
