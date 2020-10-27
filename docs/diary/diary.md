@@ -62,3 +62,19 @@ Deciding a good subset of the data to label posed a problem - it'd be good to ge
 During the meeting, I had the idea to also time how long someone takes to read an article, as there could be a wealth of trends to be discovered, but at the same time I don't want to collect more information than I need. I also asked Simon for a VM to host the labelling site on. 
 
 In the coming week, I'll aim to get the labelling site in a publishable state, as well as working more on the lit review.
+
+## Week 7 (21/10/20)
+
+### Progress since last meeting
+I've made progress on the lit review, adding in sections around exisiting approaches and fleshing out the data collection section. I also completed the backend of the labelling site, so it's almost ready to go live and start labelling the dataset.
+
+### Meeting notes
+We briefly covered the different NLP approaches, and the limits of each. Simon gave me some pointers on how to get started with the more domain-specific part of the research, as well as mentioning how argumentation reasearch into determining relevance could be appropriate for this project.
+
+We also covered the process of gaining ethical approval for the data labelling site.
+
+For next week, I'll try to work more on the NLP side of the lit review, as well as filling out the required paperwork for ethical approval.
+
+
+
+
