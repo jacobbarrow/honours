@@ -1,0 +1,61 @@
+
+\section{Methodology}
+\subsection{Data Collection}
+In order to create an algorithm to detect incongrouence in news articles, first news articles have to be collected. While there are already existing datasets, they tend to be incomplete, out of date, or in innacessiable formats, as they've been made to tackle different problems.
+
+To overcome these obstacles, a bespoke dataset needs to be created that can be classified and analysised by an NLP algorithm.
+
+\subsubsection{Attributes}
+Before collecting the data, it's important to decide what form it'll take and what attributes will be stored.
+
+As the aim of the project is to identify incongruence between an articles headline and body, these two attributes will be included in the dataset. In order to identify trends and allow for further analysis, the article's date of publication and the publisher (e.g. BBC, The Guardian, etc.) will also be stored.
+
+Collection could have gone further and retained the articles category (e.g. 'politics', 'sport' etc.), but different publishers categorise articles in different ways - for instance, the BBC has a combined 'Science and Environment' category, whereas The Guardian splits these into two distinct categories. Additionally, similar news articles can be filed under different categories, depending on the publisher. As this project's focus is on the article's content, and not categorisation, it can be considered out of scope to investigate the interplay between different publisher's approach to categorising articles.
+
+\subsubsection{Sources}
+The Independent is one of the only online publishers to make available their entire archives. Using the methods mentioned in Section \ref{obtaining-data}, XXX articles were collected, from 2011 to 2020. This 9-year period should prove a useful dataset to analyse a potentially changing landscape in the congruity of news headlines.
+
+The BBC has an 'On This Day' page\footnote{\url{http://news.bbc.co.uk/onthisday}} that has a very select archive from 1950-2005, and analysing these articles could produce some interesting results. However, each of these articles will have been hand-picked (as evidenced by the 'In Context' notes alongside each article), and only represent historic world news events. Therefore, these articles will not be a suitable representation for the average of the time period they are from.
+
+As well as archives, current news was also collected from a range of publishers. A varied range of UK publishers were selected, in order to create a cross
+
+Table \ref{tab:data-sources} shows the full list of data sources collected, as well as the time range they cover and the total records obtained.
+
+\begin{table}[h]
+\begin{tabular}{lllll}
+\textbf{Publisher} & \textbf{Earliest} & \textbf{Latest} & \textbf{Raw} & \textbf{Cleaned} \\
+BBC On This Day & 1950-01-21 & 2005-12-11 & 1857 & 1857 \\
+The Independent & 2011-01-01 & XXX & XXX & XXX  \\
+BBC & 2019-04-18 & XXX & XXX & XXX  \\
+Daily Mail & 2019-09-24 & XXX & XXX & XXX \\
+The Guardian & 2020-06-25 & XXX & XXX & XXX \\
+Huffington Post & XXX & XXX & XXX & XXX \\
+\end{tabular}
+\caption{Extents of the data sources collected}
+\label{tab:data-sources}
+\end{table}
+
+\subsubsection{Obtaining the Data} \label{obtaining-data}
+To collect the data, several Python scripts were created. For the daily news, the publishers' various RSS feeds were consulted, and for the archives a more customised approach was taken.
+
+These scripts utilise the BeautifulSoup library to parse each article's webpage and scrape them for the headline, date and body text. As each publisher builds their websites using different design patterns and with different technologies, each script had to be tailor made to fit the page structure. All the scripts used are available in this project's GitHub repository\footnote{\url{https://github.com/jacobbarrow/honours/tree/master/data-collection}}.
+
+In addition, some sites implemented a strict rate-limit on requests - to make a copy of The Independent's archive took around XXX days to complete, scraping one article every 15 seconds. 
+
+\subsubsection{Ethics}
+Across a variety of datasets, XXX articles were collected for analysis. This is a substantial amount of data, and represents the work of many individual journalists and news publishers. 
+
+While automated techniques were used to collect the data, everything collected was publically accessiable. In addition, it is legal to make a digital copy of copyrighted data for non-commercial research \footnote{\url{https://www.gov.uk/guidance/exceptions-to-copyright#text-and-data-mining-for-non-commercial-research}}. Even so, care still needs to be taken in the obtainment of the data in order to avoid overloading or altering the regular service of these archives. As mentioned above, requests were rate-limited to avoid inadvertant denial of service attack, and spread out over a long period of time. Additionally, the rolling news was only collected once per day, at midnight, in order to minimise the impact of the scraping.
+
+\subsubsection{Cleaning}
+While a bespoke scraper was created for each site, on some articles publishers used different page structures or included certain elements (such as inforgraphics) that the scraper didn't know how to handle. As a result, a portion of the articles in the dataset have erroneous text in them, such as unformatted lists of tweets or social media comments. These will hinder the algorithm, so will have to be dealt with.
+
+As the dataset is so large, and the proportion of corrupt articles so small, the best way to clean the dataset is to delete the dirty articles.
+
+
+
+
+\subsection{Data Labelling}
+\citeA{chesney2017} covers the need for a decent labelled dataset...
+
+Need for labelled data, website design and implementation, crowdsourcing labelling, ethics, analysis of labelled data

@@ -1,36 +1,44 @@
-
 \section{Background Research}
+\subsection{Introduction}
+This study aims to create a method of detecting incongrouence in news articles. Before the implementation begins, it's important to review the existing literature to give the study context.
+
+First, this research begins by defining different types of incongruence and specifying the bounds of incongruence applicable to this study. 
+
+Several existing approaches are then evaluated and discussed to give a clearer picture of both what's already been done, but also to gain some insight into a possible approach to tackle the problem.
+
+Then, natural language processing (NLP) is defined and different features reviewed.  
+
 \subsection{Types of Incongruence}
-\citeA{chesney2017} talks about the differences between clickbait, fake news, sensationalism and incongruent headlines.
+Incongruence is a broad term that, when applied to news media, covers a lot of different forms of deception and misleading information. \citeA{chesney2017} classifies three different types of incongruent news articles: clickbait, fake news, and sensationalism.
 
-\subsubsection{Clickbait}
-\citeA{potthast2016} define clickbait as a kind of "web content [...] designed to entice its readers into clicking an accompanying link". Clickbait uses exagerated language, outright fake information and can be accompanied by graphics designed to entice a reader. Figure \ref{fig:clickbait} shows an example of clickbait, sourced from a Natural Health website \footnote{\url{https://naturalon.com/}}.
+\paragraph{Clickbait}
+\citeA{potthast2016} define clickbait as a kind of "web content [...] designed to entice its readers into clicking an accompanying link". Clickbait uses exaggerated language, outright fake information and can be accompanied by graphics designed to entice a reader. Figure \ref{fig:clickbait} shows an example of clickbait, sourced from a Natural Health website \footnote{\url{https://naturalon.com/}}.
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{images/clickbait.png}
   \caption{Several clickbait articles in a 'chum box'}
   \label{fig:clickbait}
 \end{figure}
 
-\citeA{mahoney2015} terms a collection of clickbait stories as a 'chum boxes' - chum being dead fish used as bait for other fish. \citeauthor{mahoney2015} goes on to examine how clickbait uses pyschological methods to manipulate, an how they can have an unconcious effect on an individual.
+\citeA{mahoney2015} terms a collection of clickbait stories as a 'chum boxes' - chum being dead fish used as bait for other fish. \citeauthor{mahoney2015} goes on to examine how clickbait uses psychological methods to manipulate, and how they can have an unconscious effect on an individual.
 
-\subsubsection{Fake News}
+\paragraph{Fake News}
 \citeA{allcott2017} defines fake news to be "news articles that are intentionally and verifiably false, and could mislead readers". For example, a fake news conspiracy theory claimed that a pizzeria, Comet Ping Pong, in Washington ran a child sex ring in its basement. Figure \ref{fig:fakenews} shows a news article from 2016 from Your News Wire\footnote{\url{https://archive.is/YTk3n}} (now News Punch).
 
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
   \includegraphics[width=\linewidth]{images/fakenews.png}
   \caption{A fake news story}
   \label{fig:fakenews}
 \end{figure}
 
 
-This lead to a man walking into Comet Ping Pong with an assult rifle and firing several shots. The restauraunt's owner and staff also recieved several death threats \cite{lopez2016}. 
+This lead to a man walking into Comet Ping Pong with an assault rifle and firing several shots. The restaurant's owner and staff also received several death threats \cite{lopez2016}. 
 
-\citeauthor{allcott2017} go further in their definition, and give the following sub-categories for fake news: satire, parody, fabrication, manipulation, advertising and propoganda. While the intention of satire and parody is not to decieve but to criticise, the other classifications have more subversive aims, such as misinforming people or gaining as many clicks as possible.
+\citeauthor{allcott2017} go further in their definition, and give the following sub-categories for fake news: satire, parody, fabrication, manipulation, advertising and propaganda. While the intention of satire and parody is not to deceive but to criticise, the other classifications have more subversive aims, such as misinforming people or gaining as many clicks as possible.
 
-\subsubsection{Sensationalism}
-\citeA{molek2013} defines sensationalism as "a specific discourse strategy  aimed  at  channeling  audience's  attention,  which  may  well  be  resorted  to  by  both  popular and quality outlet". They suggest that media fails to provide important and valuable news, in preference for that which is superfical and quick-paced.
+\paragraph{Sensationalism}
+\citeA{molek2013} defines sensationalism as "a specific discourse strategy  aimed  at  channeling  audience's  attention,  which  may  well  be  resorted  to  by  both  popular and quality outlet". They suggest that media fails to provide important and valuable news, in preference for that which is superficial and quick-paced.
 
 
 Below are examples of sensationalised headlines, sourced from The Sun:
@@ -48,18 +56,57 @@ These headlines use dramatic language ('slams', 'sensational', 'slash') to evoke
 This sensationalism is intended to provoke and entertain, at times at the expense of accuracy \cite{chesney2017}.
 
 \subsubsection{Project scope}
-This project will not consider fake news - by it's nature, the entirity of a fake news article will be false, not just the headline. Therefore, in order to determine whether an article is fake, external sources would have to be consulted. Creating an algorithm for the truth, while an open problem in computer science\footnote{\url{https://www.youtube.com/watch?v=leX541Dr2rU}}, is considered out of the scope of this project.
+This project will not consider fake news - by its nature, the entirety of a fake news article will be false, not just the headline. Therefore, to determine whether an article is fake, external sources would have to be consulted. Creating an algorithm for the truth, while an open problem in computer science\footnote{\url{https://www.youtube.com/watch?v=leX541Dr2rU}}, is considered out of the scope of this project.
 
-Instead, this study will seek to evaluate to what extent a headline represents an article's body. This could identify sensationalism, over exaggerated news stories and potentially some types of clickbait.
+Instead, this study will seek to evaluate to what extent a headline represents an article's body. This could identify sensationalism, over-exaggerated news stories and potentially some types of clickbait.
 
 \subsection{Impact of Incongruence}
-\subsubsection{Manufacturing Outrage}
-\subsubsection{}
-For people who read beyond the headlines - \citeA{ecker2014} ran experiments that investigated how headlines effect the processing of the facts in news "Information that is initially accepted as valid but is later foundto be incorrect can have a persistent influence on people’s memoryand reasoning"
+\citeA{karlsson2010} categorise online news both by its immediacy and interactivity, which has shortened the news cycle and increased the competitivity between publishers. Therefore, publishers have to make the news more appealing to potential consumers.
+
+In the information-overload arena of online news reporting, the body of a news article is less read than the headline \cite{gabielkov2016}.  
+
+For those that read beyond the headlines, incongruent articles can still be problematic; it's a well-established theory in psychology that first opinions matter \cite{digirolamo1997}. \citeA{ecker2014} ran a study that investigated how headlines affect the processing of the facts in news "Information that is initially accepted as valid but is later found to be incorrect can have a persistent influence on people’s memory and reasoning". Publishers can seek to sway individuals by using choice phrases to influence their mindset, which means that the same content could be interpreted in many ways depending on its headline \cite{reis2015}.
+
+This means that if a headline is incongruent, even if the individual reads the whole article, there's a real possibility they will be left with a false impression of the facts. 
 
 
 \subsection{Existing Approaches}
-A range of studies have already considered several aspects of this project.
 
-\citeA{manjesh2017} used Natural Language Processing (NLP) to identify 'clickbait' headlines, however they did not consider the headline's relationship to the article.
+\citeA{manjesh2017} used a range of different techniques to identify clickbait and were able to achieve a 98\% accuracy with a deep learning approach. However, they only analysed the article's headline and disregarded the body text.  They found that clickbait headlines tend to have elaborate sentences with various linguistic nuances, such as "21 Pics Of Celebs Photoshopped In The Best Way Ever. These Are EPIC". There's also a statement at the end to further strengthen the main claim of the headline.
+
+\citeA{park2020} used a deep learning approach to create a web interface for detecting incongruent articles. They managed to gain an accuracy of 86\%. However, for their dataset, they generated incongruent articles by swapping a completely different article's text in for the original. For example Headline A would have a section of Article B's body. They then considered congruent headlines to be those with the original body text in place. This could lead to false positives, and as the manufactured dataset does not reflect the incongruence in real-world articles their algorithm's output lacks validity.
+
+\subsection{Natural Language Processing}
+Natural language processing (NLP) is a method of extracting information from a spoken or written language. 'Natural' here means the more free and less well defined human language, as opposed to strictly interpreted programming and mathematical notation. \cite{jackson2002}
+
+ As natural language is filled with a range of nuances, assumptions and relies heavily on context, codifying it into a standardised, programmatic output poses a range of difficulties. For example, consider the following two sentences:
+
+\begin{itemize}
+	\item Apple's shares fell by 10\% in the last quarter
+	\item An apple a day keeps the doctor away
+\end{itemize}
+
+The word 'apple' appear in both sentences, but in one it refers to a multinational company, and in the other a tasty fruit. It is only by using the context clues in the surrounding sentence that the meaning of the word can be deduced.
+
+There are a range of different approaches that seek to tackle the problems inherent in determining the meaning and sentiment of natural language, each with their  characteristics, strengths and limitations. 
+
+\subsubsection{Statistical NLP}
+Statistical NLP creates metadata from a sentence and aims to extract meaning by using statistical inference \cite{manning1999}. Several techniques and models are used to create and interpret the metadata.
+
+\paragraph{Tokens}
+A token is typically an alphanumeric string or a punctuation mark. For instance, the sentence "Is this the way to Amarillo?" could be tokenised (represented as a list of tokens) like so: \texttt{"Is", "this", "the", "way", "to", "Amarillo", "?"}.\par
+	
+\paragraph{n-grams}
+An n-gram is a subsection of a tokenised sentence, where \texttt{n} represents the number of tokens in a subsection. An n-gram of length 3 (also known as a tri-gram) of the above sentence could be \texttt{"way", "to", "Amarillo"}
+	The location of these n-grams, their frequency and their composure all provide data points that can provide insights into the meaning of a body of text \cite{banerjee2003}.
+	
+\paragraph{Colocations}
+\citeauthor{manning1999} describe a colocation as "an expression consisting of two or more words that correspond to some conventional way of saying things". For example, "around about", "stark naked" and "stiff upper lip" are all colocations. In a colocation, the subsequent parts make up a whole and lose some of their independent meaning - "fool hearted" makes sense to an English speaker's ear, but "idiot hearted" could sound offensive, or cause a misunderstanding.
+	One way of identifying colocations is to count the frequency of bigrams in a body of text - a high number of two words occurring next to each other could indicate a colocation.
+
+\paragraph{Hidden Markov Models} A Hidden Markov Model (HMM) is a system with hidden states. The system is comprised of a Markov chain, a model describing the probabilities an event occours. In NLP, HMMs can be used to identify how often a token or n-gram  
+
+\subsubsection{Structured NLP}
+
+\subsubsection{Machine Learning}
 
