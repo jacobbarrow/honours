@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Labelling</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main>
+        <p>Hello!</p>
+
+        <p>I'm working on creating an algorithm that can detect if a news article's headline matches its content. To do this, I need a collection of articles that have already been labelled with a rating of incongruence, both to determine if the algorithm is working, and also to train it to be more accurate.</p>
+
+        <p>In this study, you will be shown a news article, then be asked to read through it and rate how well you think the headline matches the content.</p>
+
+        <p>You can rate as many articles as you want, and stop participating at any time.</p>
+            
+        <p>The only information collected when rating an article is the rating you give and the length of time taken to reach that rating. You can take as long as you feel necessary to read through and rate each article.</p>
+            
+        <p>The information collected from your participation will be made publically available. No identifying information regarding your participation is collected, so any rating you provide will be completely anonymous.</p>
+            
+        <p>If you are below the age of 18, please do not participate in this study.</p>
+
+        <p>If you have any questions, concerns or comments, please feel free to email Jacob at 4033760@live.napier.ac.uk</p>
+
+        <p>Thank you for taking part in this study</p>
+
+        <a href="/rating">I understand, continue to the articles</a>
+
+        <p>You can download the above information and a full consent sheet <a href="{{ url_for('static', filename='participant-info.pdf') }}" target="_new">here</a></p>
+
+    </main>
+</body>
+</html>

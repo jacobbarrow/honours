@@ -5,7 +5,7 @@ app = Flask(__name__, template_folder='views')
 
 @app.route('/')
 def showDisclaimer():
-    return render_template('disclaimer.html')
+    return render_template('consent.html')
 
 @app.route('/rating', methods=['GET'])
 def showRating():
