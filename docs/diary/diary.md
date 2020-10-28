@@ -76,5 +76,14 @@ We also covered the process of gaining ethical approval for the data labelling s
 For next week, I'll try to work more on the NLP side of the lit review, as well as filling out the required paperwork for ethical approval.
 
 
+## Week 8 (28/10/20)
 
+### Progress since last meeting
+I completed the ethics documentation and sent it to Simon for approval. I've also got the labelling site into a publishable position, and have created a 300-article dataset ready to be labelled. I also updated the lit review with a section on NLP and tidied up some previous sections.
 
+### Meeting notes
+The server Simon set up for me has issues, so I will use my own for the labelling site. We also talked about the cleanliness of the dataset - from collating the 300 articles for labelling I found about 10% of them had been incorrectly scraped and weren't comprehensible. We covered maybe using a spell checker to weed out the dirty articles from the main dataset, or just leaving them in and seeing how the algorithm handles them.
+
+We also talked about the interim report, what should be included in it, and the rough structure of the dissertation.
+
+For next week, I'll set up the labelling site on my own server, add an introduction to the report, and do some more work on the NLP section to cover structured and ML approaches.
