@@ -85,7 +85,7 @@ form input[type="submit"] {
         background: var(--colour); }
         .rating-container .rating .option.selected span {
           display: block; }
-      .rating-container .rating .option:hover {
+      .rating-container .rating .option:hover, .rating-container .rating .option:focus {
         background: var(--colour); }
       .rating-container .rating .option.small {
         width: 22.5px;

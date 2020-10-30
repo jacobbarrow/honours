@@ -7,20 +7,25 @@ const time_taken_input = document.getElementById('time_taken');
 const options = document.getElementsByClassName('option');
 
 for(let i=0; i<options.length; i++) {
-    options[i].addEventListener('click', clickHandler);
+    options[i].addEventListener('click', function() {
+        clickHandler(options[i])
+    });
+    options[i].addEventListener('keydown', function(e) {
+        return e.keyCode != 13 || clickHandler(options[i]);
+    });
 }
 
-function clickHandler() {
+function clickHandler(option) {
     // First, unselect everything
     for(let i=0; i<options.length; i++) {
         options[i].classList.remove('selected');
     }
 
     // Then, select this option
-    this.classList.add('selected')
+    option.classList.add('selected')
 
     // Add the option's value to the hidden input
-    rating_input.value = this.getAttribute('data-rating');
+    rating_input.value = option.getAttribute('data-rating');
 }
 
 form.onsubmit = function() {
