@@ -76,6 +76,8 @@ This means that if a headline is incongruent, even if the individual reads the w
 
 \citeA{park2020} used a deep learning approach to create a web interface for detecting incongruent articles. They managed to gain an accuracy of 86\%. However, for their dataset, they generated incongruent articles by swapping a completely different article's text in for the original. For example Headline A would have a section of Article B's body. They then considered congruent headlines to be those with the original body text in place. This could lead to false positives, and as the manufactured dataset does not reflect the incongruence in real-world articles their algorithm's output lacks validity.
 
+The first Fake News Challenge (FNC1) was held by \citeA{pomerleaurao2017}. The challenge supplied a dataset of articles, and encouraged contestants to create a classifier capable of detecting fake news. While there has not been subsequent challenges, 50 teams competed and produced a wide range of different approaches. 
+
 \subsection{Natural Language Processing}
 Natural language processing (NLP) is a method of extracting information from a spoken or written language. 'Natural' here means the more free and less well defined human language, as opposed to strictly interpreted programming and mathematical notation. \cite{jackson2002}
 
@@ -106,7 +108,14 @@ An n-gram is a subsection of a tokenised sentence, where \texttt{n} represents t
 
 \paragraph{Hidden Markov Models} A Hidden Markov Model (HMM) is a system with hidden states. The system is comprised of a Markov chain, a model describing the probabilities an event occours. In NLP, HMMs can be used to identify how often a token or n-gram  
 
-\subsubsection{Structured NLP}
 
-\subsubsection{Machine Learning}
+\subsubsection{Sentiment Analysis}
+Sentiment analysis is a branch of NLP that could potentially aid the detection of an incongrous article. It's a relatively new development (no substantial research had been conducted before 2000) that aims to extract opinions from text and speech \cite{liu2012}.
+
+\citeA{liu2012} identifies a key problem with sentiment analysis: sentiment is a very subjective concept, and calculating an absolute sentiment score for a sentence is fraught with potential difficulties. For instance, the phrase "I really enjoy writing in an academic style" could be interpreted as a very positive remark, or perceived with sarcastic overtones and classified as a negative sentiment.
+
+Sentiment analysis could be used to approach this project - both the headline and the body could be analyised, and the results compared. The difference in sentiment could then be used as an incongruence score.
+
+\subsubsection{Stance Detection}
+
 
