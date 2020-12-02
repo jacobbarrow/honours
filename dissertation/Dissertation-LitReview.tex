@@ -6,7 +6,7 @@ First, this research begins by defining different types of incongruence and spec
 
 Several existing approaches are then evaluated and discussed to give a clearer picture of both what's already been done, but also to gain some insight into a possible approach to tackle the problem.
 
-Then, natural language processing (NLP) is defined and different features reviewed.  
+Then, natural language processing (NLP) is defined and different features and approaches reviewed and discussed.
 
 \subsection{Types of Incongruence}
 Incongruence is a broad term that, when applied to news media, covers a lot of different forms of deception and misleading information. \citeA{chesney2017} classifies three different types of incongruent news articles: clickbait, fake news, and sensationalism.
@@ -93,7 +93,7 @@ The word 'apple' appear in both sentences, but in one it refers to a multination
 There are a range of different approaches that seek to tackle the problems inherent in determining the meaning and sentiment of natural language, each with their  characteristics, strengths and limitations. 
 
 \subsubsection{Statistical NLP}
-Statistical NLP creates metadata from a sentence and aims to extract meaning by using statistical inference \cite{manning1999}. Several techniques and models are used to create and interpret the metadata.
+Statistical NLP creates metadata from a sentence and aims to extract meaning by using statistical inference \cite{manning1999}. Several techniques can be used to create and interpret the metadata.
 
 \paragraph{Tokens}
 A token is typically an alphanumeric string or a punctuation mark. For instance, the sentence "Is this the way to Amarillo?" could be tokenised (represented as a list of tokens) like so: \texttt{"Is", "this", "the", "way", "to", "Amarillo", "?"}.\par
@@ -104,18 +104,84 @@ An n-gram is a subsection of a tokenised sentence, where \texttt{n} represents t
 	
 \paragraph{Colocations}
 \citeauthor{manning1999} describe a colocation as "an expression consisting of two or more words that correspond to some conventional way of saying things". For example, "around about", "stark naked" and "stiff upper lip" are all colocations. In a colocation, the subsequent parts make up a whole and lose some of their independent meaning - "fool hearted" makes sense to an English speaker's ear, but "idiot hearted" could sound offensive, or cause a misunderstanding.
-	One way of identifying colocations is to count the frequency of bigrams in a body of text - a high number of two words occurring next to each other could indicate a colocation.
+	One way of identifying colocations is to count the frequency of bigrams in a body of text - a high number of two words occurring next to each other could indicate a colocation. \\
 
-\paragraph{Hidden Markov Models} A Hidden Markov Model (HMM) is a system with hidden states. The system is comprised of a Markov chain, a model describing the probabilities an event occours. In NLP, HMMs can be used to identify how often a token or n-gram  
+By themselves, these techniques would be insufficient to extract any substantative meaning or measure of congruence from an article. However, they will be essential in the formation of a foundation for a classifier, and knowledge of them will be crucial in understanding the more advanced and complex NLP approaches.
 
-
-\subsubsection{Sentiment Analysis}
+\subsubsection{Sentiment Analysis}\label{lit:sentiment-analysis}
 Sentiment analysis is a branch of NLP that could potentially aid the detection of an incongrous article. It's a relatively new development (no substantial research had been conducted before 2000) that aims to extract opinions from text and speech \cite{liu2012}.
 
 \citeA{liu2012} identifies a key problem with sentiment analysis: sentiment is a very subjective concept, and calculating an absolute sentiment score for a sentence is fraught with potential difficulties. For instance, the phrase "I really enjoy writing in an academic style" could be interpreted as a very positive remark, or perceived with sarcastic overtones and classified as a negative sentiment.
 
 Sentiment analysis could be used to approach this project - both the headline and the body could be analyised, and the results compared. The difference in sentiment could then be used as an incongruence score.
 
-\subsubsection{Stance Detection}
+However, it is possible for two pieces of text to share the same sentiment, yet disagree with eachother. For instance, consider the following two phrases:
+
+\begin{itemize}
+	\item I love Daniel Craig's work - he's the best Bond
+	\item Sean Connery is by far the best Bond, he's a great actor
+\end{itemize}
+
+While both have a very positive sentiment regarding each actor's ability, they are completely opposed in opinion. Likewise, it's also possible for two texts to have opposing sentiments and yet be congruent in meaning - a headline could  be a positive sentiment about wind turbines, yet the body could contain very negative sentiments about coal-fuelled power plants.
+
+Because of these issues, sentiment analysis by itself would not provide a significant metric by which the congruence of an article can be determined. However, it could prove beneficial to integrate it alongside other NLP techniques. 
+
+\subsubsection{Named Entity Recognition}
+Named Entity Recognition (NER) is the process of extracting and locating references to real-world objects from text. These named entities can represent a wide number of 'information units', such as people, organisations, locations and numeric expressions \cite{nadeau2007}. 
+
+There are several approaches to NER, two of which are covered here.
+
+\paragraph{One Hot Encoding}
+One hot encoding represents each word in a phrase as a binary string, with the length of the string being the number of unique tokens in the phrase \cite{bommana2019}.  For example, consider the following sentence "I've got to go to France!", which can be tokenised as:
+\begin{center}\texttt{"I've", "got", "to", "go", "to", "France", "!"}
+\end{center}
+
+\begin{minipage}{0.25\textwidth}
+\begin{tabular}{ll}
+I've   & \texttt{100000} \\
+got	   & \texttt{010000} \\
+to	   & \texttt{001000} \\  
+go 	   & \texttt{000100} \\  
+France & \texttt{000010} \\  
+!	   & \texttt{000001} \\  
+\end{tabular}
+\end{minipage}
+\begin{minipage}{0.68\textwidth}
+This can be encoded using the one hot method, using a binary string of length 7, as on the left.
+
+These binary representations can then be consumed by a neural network, which can be trained to identify named entities by detecting patterns in the makeup of the encoded strings.
+
+\end{minipage}
+
+\paragraph{Word Vectorisation}\label{lit:word2vec}
+
+The act of converting a word to a vector (word2vec) is a simple but powerful concept. As well as being used to identify words with similar meanings, it can also identify analgous pairs and connections between words. The most famous of these analogies is "Man is to king as woman is to \textit{x}", where word2vec is able to give \textit{x} as "queen". \cite{church2017}
 
 
+\begin{minipage}{1.5in}
+
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{center}
+\framebox{\textbf{I've} got to} go to France!\\ \vspace{1mm}
+\framebox{I've \textbf{got} to go} to France!\\ \vspace{1mm}
+\framebox{I've got \textbf{to} go to} France!\\ \vspace{1mm}
+I've \framebox{got to \textbf{go} to France}!\\ \vspace{1mm}
+I've got \framebox{to go \textbf{to} France!}\\ \vspace{1mm}
+I've got to \framebox{go to \textbf{France}!}\\ \vspace{1mm}
+I've got to go \framebox{to France\textbf{!}}\\ 
+\end{center}
+\captionof{figure}{Context windows}\label{fig:context-window}
+
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+These core concept of these connections are 'context windows' - a set of words that surround a target. For instance, using a window of size 2 (2 tokens on either side of the target), the example sentence would be analyised as in figure \ref{fig:context-window} (the target token is emboldened).\\
+Bigrams (pairs of tokens) can then be taken for each window, and the collection of bigrams then used to train a neural network to generate a vector.
+\end{minipage}
+
+\vspace{2mm}
+
+These vectors take the form of an array of floats used to represent a word - for instance, "cat" could be represented as \texttt{[0.023, 0.131, 0.001, 0.415, 0.901]}. The length of the array is determined by the number of neurons in the hidden layer of the neural network, as each neuron is responsible for calculating a single float \cite{bommana2019}. These vectors can be thought of a point in a multi-dimensional space, and connections can be made, either by traversing the dimensions to find new words, or by calculating the distance between a pair of words.
+
+In terms of the scope of this project, word vectorisation could provide some useful insight into the relatedness of the headline and the body text. Again, this may not be sufficient as a standalone technique, but when used as part of a larger pipeline, it has potential to yield some good results.

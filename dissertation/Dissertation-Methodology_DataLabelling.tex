@@ -1,0 +1,30 @@
+\subsection{Data Labelling}
+\citeA{chesney2017} reviews the current datasets available to detect incongruent articles, and concludes that while many are available and have some potential use, none are a good fit for the task. With a lack of a well suited labelled dataset, a bespoke one was created.
+
+\subsubsection{Generating a Dataset}
+To create a subset to be labelled, 150 articles were randomly selected from the main dataset of collected articles. As this subset was taken before collection had been completed and the dataset finalised, the articles selected will not represent the most recent in the dataset. However, as the time frame missed out on (around two months) is not a substantial period, this should have a trivial effect on the data quality.
+
+\subsubsection{Design and Implementation of Labelling Site}
+The site used to collect ratings for articles was bespoke - exisiting off-the-shelf survey solutions did not meet the needs of this approach, or would have to be heavily modified to suit the data.
+
+The design of the labelling site was kept minimalist and clean, ensuring that the volunteers wouldn't find themselves hindered and could concentrate on the task at hand. 
+
+Two pages were created, one to show the consent and briefing information, the other to show an article and allow a user to select a rating. Appendix \ref{app:rating-form} shows the form controls used to rate each article, and a full view of both the page's contents can be seen on the project's GitHub repository \footnote{\url{https://github.com/jacobbarrow/honours/tree/master/data-labelling/views}}.
+
+As well as the rating (codified in the database as an integer from 0-6), a javascript file measured the time taken to read and rate the article. This will allow for a more extensive analysis of the data and may aid in compilaition of the final labelled set.
+
+The site used Flask, a Python framework, to both serve the pages and interact with the SQLite database.
+
+\subsubsection{Ethics}
+ While no personal information is collected and it is impossible to identify an individual from the data, the site asks volunteers to take part in research. Therefore, it is important that ethical approval is acquired.
+
+Appendix \ref{app:ethics-participant-info} shows the participant information sheet shown to all participants before they proceeded to the rating. 
+
+Appendix \ref{app:ethics-approval} is the ethical approval form that details the extent of the information collected and how it will be processed and retained.
+
+\subsubsection{Analysis of Labelled Data}
+The site was distributed through several channels (friends, online forums) and XXX ratings were received.
+
+
+\subsubsection{Conglomeration}
+Multiple ratings were taken for each article, and they need to be distilled down into one label per article.

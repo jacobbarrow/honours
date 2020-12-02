@@ -1,5 +1,5 @@
 \subsection{Data Collection}
-In order to create an algorithm to detect incongrouence in news articles, first news articles have to be collected. While there are already existing datasets, they tend to be incomplete, out of date, or in innacessiable formats, as they've been made to tackle different problems.
+In order to create an algorithm to detect incongrouence in news articles, first news articles have to be collected. While there are already existing datasets, they tend to be incomplete, out of date, or in innacessiable formats, as they've been made to tackle different problems. 
 
 To overcome these obstacles, a bespoke dataset needs to be created that can be classified and analysised by an NLP algorithm.
 
@@ -40,6 +40,8 @@ These scripts utilise the BeautifulSoup library to parse each article's webpage 
 
 In addition, some sites implemented a strict rate-limit on requests - to make a copy of The Independent's archive took around XXX days to complete, scraping one article every 15 seconds. 
 
+These scripts ran on a Raspberry Pi for XXX days, from 2020-09-18 to XXX.
+
 \subsubsection{Ethics}
 Across a variety of datasets, XXX articles were collected for analysis. This is a substantial amount of data, and represents the work of many individual journalists and news publishers. 
 
@@ -48,4 +50,4 @@ While automated techniques were used to collect the data, everything collected w
 \subsubsection{Cleaning}
 While a bespoke scraper was created for each site, on some articles publishers used different page structures or included certain elements (such as inforgraphics) that the scraper didn't know how to handle. As a result, a portion of the articles in the dataset have erroneous text in them, such as unformatted lists of tweets or social media comments.
 
-When creating the subset of articles for labelling, out of the 300 records 36 (12\%) were corrupt or included content not part of the article's body text. Extrapolating this to the rest of the dataset, this means approximately XXX of the collected articles are 'dirty'.
+To obtain a measure of cleanliness, a subset of 300 articles was created. From this, 36 (12\%) were corrupt or included content not part of the article's body text. Extrapolating this to the rest of the dataset, this means approximately XXX of the collected articles are 'dirty'.
