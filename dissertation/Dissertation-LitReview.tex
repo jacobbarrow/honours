@@ -70,13 +70,29 @@ For those that read beyond the headlines, incongruent articles can still be prob
 This means that if a headline is incongruent, even if the individual reads the whole article, there's a real possibility they will be left with a false impression of the facts. 
 
 
-\subsection{Existing Approaches}
+\subsection{Existing Approaches} \label{existing-approaches}
 
 \citeA{manjesh2017} used a range of different techniques to identify clickbait and were able to achieve a 98\% accuracy with a deep learning approach. However, they only analysed the article's headline and disregarded the body text.  They found that clickbait headlines tend to have elaborate sentences with various linguistic nuances, such as "21 Pics Of Celebs Photoshopped In The Best Way Ever. These Are EPIC". There's also a statement at the end to further strengthen the main claim of the headline.
 
 \citeA{park2020} used a deep learning approach to create a web interface for detecting incongruent articles. They managed to gain an accuracy of 86\%. However, for their dataset, they generated incongruent articles by swapping a completely different article's text in for the original. For example Headline A would have a section of Article B's body. They then considered congruent headlines to be those with the original body text in place. This could lead to false positives, and as the manufactured dataset does not reflect the incongruence in real-world articles their algorithm's output lacks validity.
 
 The first Fake News Challenge (FNC1) was held by \citeA{pomerleaurao2017}. The challenge supplied a dataset of articles, and encouraged contestants to create a classifier capable of detecting fake news. While there has not been subsequent challenges, 50 teams competed and produced a wide range of different approaches. 
+
+\subsubsection{Exisiting Labelled Datasets}
+A labelled dataset is a set of data points that have been tagged with some information that identifies a characterstic of that data. For example, for this project a labelled dataset may consist of several articles that have been tagged with a level of congruence. Labelled datasets can be used to inform and train an algorithm to correctly tag unlabelled data, or be used as a 'gold-standard' to determine the performance of a system.
+
+\citeA{chesney2017} reviews the current datasets available to detect incongruent articles, and concludes that while many are available and have some potential use, none are a good fit for the task.
+
+\begin{table}[h]
+\begin{tabular}{p{4cm}p{7.5cm}l}
+\textbf{Source} & \textbf{Labels} & \textbf{Size} \\
+Clickbait Challenge & Discrete (Not\-/Slightly\-/Considerably\-/Heavily Clickbaiting) & 2495 \\
+\citeA{piotrkowicz2017} & Continuous (prominence, sentiment, superlativeness, proximity, surprise, and uniqueness) & 11980 \\
+FakeNews Challenge & Discrete (Agree, Disagree, Discuss, Unrelated) & 50000 \\
+\end{tabular}
+\caption{An overview of existing labelled datasets}
+\label{tab:existing-data}
+\end{table}
 
 \subsection{Natural Language Processing}
 Natural language processing (NLP) is a method of extracting information from a spoken or written language. 'Natural' here means the more free and less well defined human language, as opposed to strictly interpreted programming and mathematical notation. \cite{jackson2002}
@@ -182,6 +198,28 @@ Bigrams (pairs of tokens) can then be taken for each window, and the collection 
 
 \vspace{2mm}
 
-These vectors take the form of an array of floats used to represent a word - for instance, "cat" could be represented as \texttt{[0.023, 0.131, 0.001, 0.415, 0.901]}. The length of the array is determined by the number of neurons in the hidden layer of the neural network, as each neuron is responsible for calculating a single float \cite{bommana2019}. These vectors can be thought of a point in a multi-dimensional space, and connections can be made, either by traversing the dimensions to find new words, or by calculating the distance between a pair of words.
+These vectors take the form of an array of floats used to represent a word - for instance, "cat" could be represented as \texttt{[0.023, 0.131, 0.001, 0.415, 0.901]}. The length of the array is determined by the number of neurons in the hidden layer of the neural network, as each neuron is responsible for calculating a single float \cite{bommana2019}. These vectors can be thought of a point in a multi-dimensional space, and connections can be made by traversing the dimensions to find new words.
 
 In terms of the scope of this project, word vectorisation could provide some useful insight into the relatedness of the headline and the body text. Again, this may not be sufficient as a standalone technique, but when used as part of a larger pipeline, it has potential to yield some good results.
+
+\subsubsection{Lexical Overlap}
+Lexical overlap, also known as lexical similiarty or textual entailment, is a measure of similarity between two elements of text \cite{adams2006}. This overlap can either be character-based (similar text) or statement-based (similar meaning).
+
+\citeA{pradhan2015} reviewed several different approaches to obtaining a measure of lexical overlap. Statement-based lexical overlap uses the distance between word vectors to determine the difference in sentiment. Cosine similarity can be used to calculate the distance between two words by taking into account the angle created between the vectors and the origin \cite{qian2004}. Alternatively, the difference between a single word and a set of words can be calculated using centroid-based similarity. This is the measure of distance from one point in a vector to the geometrical centre (the arithmetic mean) of a set of points \cite{Awrejcewicz2012}.  
+
+Character-based lexical overlap is used to determine how similar words are in respect to their composition. For example, 'witches' has a large character overlap with 'britches', but very little overlap with 'broomstick'. The Levenshtein distance can be used to calculate overlap, and is loosely defined as 'the minimum number of [operations] to make two strings equal' \cite{navarro2001guided}. Other distance measures include the Hamming distance (number of replacements), the Episode distance (number of additions) and the Longest Common Subsequence distance (number of additions and deletions). 
+
+
+
+\subsubsection{tf-idf}\label{lit:tfidf}
+Term Frequency times Inverse Document Frequency (tf-idf) is a measure used to determine the relevance of a search query to a given document \cite{Rajaraman2011}. Its core mechanic is using the inverse frequency of a word in a set of documents to determine relevance, which can be use to discount superfluous words from the query. For instance, given the search phrase 'The best apricots in Australia', the word 'The' isn't of importance to the query. As 'The' will appear in a great deal of documents (if not all of them), the inverse of its occurrence can be used to give it a low weighting. 
+
+Given a set of \(N\) documents, where \(f_{ij}\) is the number of times a word \(i\) appears in document \(j\), \citeauthor{Rajaraman2011} define the term frequency \(TF_{ij}\) to be:
+
+\[TF_{ij} = \frac{f_{ij}}{\textrm{max}_k f_{kj}}\]
+
+This augments \(f_{ij}\), as it divides it by the maximum number of occurences of \textit{any} term in the document (the most frequent word). This means the word with the most occurrences will have a TF of 1, and the least frequent word will have the lowest TF. The inverse document frequency \(IDF_i\) is defined as \(\textrm{log}_2(N/n_i)\), where \(n_i\) is the count of documents that a term \(i\) appears in. This gives a measure of how common a word is in reference to the whole set of documents - the rarer the word, the higher its IDF.
+
+With both these elements in place, the overall tf-idf is calculated using \(TF_{ij} \times IDF_i\). The higher the output, the more likely it is the term \(i\) represents the content of the document \(j\).
+
+tf-idf could potentially be used to tackle the problem of identifying incongruence by substituting the search term for the article's headline and the document for the article's body. Its ability to detect relevance could then be used to provide a measure of similarity between the two. However, this approach may only be of use for articles that have a strong disparity between headline and body; it is unlikely to identify subtle differences in text as it is designed for obtaining a broad measure of relevance.

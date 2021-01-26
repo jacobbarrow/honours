@@ -1,5 +1,5 @@
 \subsection{Data Collection}
-In order to create an algorithm to detect incongrouence in news articles, first news articles have to be collected. While there are already existing datasets, they tend to be incomplete, out of date, or in innacessiable formats, as they've been made to tackle different problems. 
+In order to create an algorithm to detect incongrouence in news articles, first news articles have to be collected and structured, and their suitability to the project determined. While there are already existing datasets, they tend to be incomplete, out of date, or in innacessiable formats, as they've been made to tackle different problems. For instance, while the Internet Archive has a catalogue of online news from around the world\footnote{\url{https://archive.org/details/ArchiveIt-Collection-11171}}, it is heavily fractured over thousands of files and is difficult to parse. Additionally, several datasets used to identify misleading and deceptive articles fabricate incongrouence by pairing the headline of one article with the body of another, such as in \citeA{park2020}. As mentioned in section \ref{existing-approaches}, this does not reflect the more subtle incongruity in real-world articles, so is not suited for this project.
 
 To overcome these obstacles, a bespoke dataset needs to be created that can be classified and analysised by an NLP algorithm.
 
@@ -38,11 +38,11 @@ To collect the data, several Python scripts were created. For the daily news, th
 
 These scripts utilise the BeautifulSoup library to parse each article's webpage and scrape them for the headline, date and body text. As each publisher builds their websites using different design patterns and with different technologies, each script had to be tailor made to fit the page structure. All the scripts used are available in this project's GitHub repository\footnote{\url{https://github.com/jacobbarrow/honours/tree/master/data-collection}}.
 
-In addition, some sites implemented a strict rate-limit on requests - to make a copy of The Independent's archive took around XXX days to complete, scraping one article every 15 seconds. 
+In addition, some sites implemented a strict rate-limit on requests - to make a copy of The Independent's archive took around XXX months to complete, scraping one article every 15 seconds. 
 
-These scripts ran on a Raspberry Pi for XXX days, from 2020-09-18 to XXX.
+These scripts ran on a Raspberry Pi for XXX days, from 2020-09-18 to XXX. Except for the Independent archive script, which ran continously, a cron job was used to run each script once per day at 1am.
 
-\subsubsection{Ethics}
+\subsubsection{Ethics and Copyright}
 Across a variety of datasets, XXX articles were collected for analysis. This is a substantial amount of data, and represents the work of many individual journalists and news publishers. 
 
 While automated techniques were used to collect the data, everything collected was publically accessiable. In addition, it is legal to make a digital copy of copyrighted data for non-commercial research \footnote{\url{https://www.gov.uk/guidance/exceptions-to-copyright#text-and-data-mining-for-non-commercial-research}}. Even so, care still needs to be taken in the obtainment of the data in order to avoid overloading or altering the regular service of these archives. As mentioned above, requests were rate-limited to avoid inadvertant denial of service attack, and spread out over a long period of time. Additionally, the rolling news was only collected once per day, at midnight, in order to minimise the impact of the scraping.

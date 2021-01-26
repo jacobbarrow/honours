@@ -1,7 +1,17 @@
 \subsection{Experimentation}
-To create the classifier, the efficacy of individual approaches needs to be evaluated.
+To create the classifier, the efficacy of individual approaches needs to be evaluated. The general structure of each experiment run takes the following form:
 
+\begin{enumerate}
+	\item Implement the classifier approach under test
+	\item Compile and load the dataset according to the parameters discussed in section \ref{experimentation-data}
+	\item Run the algorithm on each article in the dataset, measuring the resultant classification
+	\item Record the accuracy of the classifier using the dataset as a baseline truth
+	\item Calculate the significance	values of the outcome, and optionally plot a chart to represent the results, if appropriate
+\end{enumerate}
+
+\subsubsection{Experimentation Dataset}\label{experimentation-data}
 At the time of experimentation, the bespoke labelled dataset was not yet complete, as not enough ratings had been given to calculate an average rating per article. In lieu of this, the FNC-1 dataset was used as a gold standard to measure the results of the preliminary experiments against. The dataset contains articles labelled as \texttt{agree}, \texttt{disagree}, \texttt{discuss}, or \texttt{unrelated}. Articles labelled as \texttt{discuss} were discarded from the set before experimentation - if an article discusses the content, it could ultimately either agree or disagree with the headline, so provides no meaningful information considering the scope of this project. Articles tagged as \texttt{unrelated} were also discarded, as they comprised of body texts matched with headlines from a different article, which will not be present in the articles collected. Once the FNC-1 dataset was cleaned, 843 labelled articles remained.
+
 
 \subsubsection{Sentiment Analysis}
 The VADER sentiment analyser\footnote{\url{https://github.com/cjhutto/vaderSentiment}} was used for experimentation - it would not be the best use of time to design a bespoke analyser if no trend was discovered in the dataset. The code used to perform this experiment is displayed in appendix \ref{app:sentiment-analysis}.
@@ -44,10 +54,56 @@ Gensim's Python implementation of word2vec\footnote{\url{https://radimrehurek.co
 
 The vectorisation model created is of good quality, and able to perform mathematical operations on words, such as the often-used example:
 
-\[Woman + King - Man = Queen\]
+\[\textrm{Woman} + \textrm{King} - \textrm{Man} = \textrm{Queen}\]
 
 With the model trained, it can be used to evaluate the labelled FNC dataset.
 For each article in the database, an average vector was calculated for both the headline and the body. This was achieved by summing up each word's vector and dividing by the number of words in the text. The similarity of these vectors was then computed using the \texttt{cosine\_similarites} function in Gensim, which calculates the cosine difference of two vectors. The average difference for both articles that agree and disagree was obtained. The code used to perform this experiment is displayed in appendix \ref{app:vectorisation}.
 
 For articles labelled as agree, the average vector difference was 0.5175, and those labelled disagree had a difference of 0.5050, with a p-value of 0.19308. Like with the sentiment analysis experiment, the lack of significance and the negligible difference between each average shows that this is an ineffective way to determine congruence. This could be because only a few of the words in an article will point to incongruence - by obtaining an average of all of them, the meaning of the text will be lost in the noise.
+
+\subsubsection{tf-idf}
+
+\begin{minipage}{0.65\linewidth}
+To experiment the practicality of using tf-idf to detect incongruence, the algorithm set out in section \ref{lit:tfidf} was implemented in Python. To get an informal understanding of the implementation's efficacy it was used to determine the relevance of a range of keywords to an article about a house fire caused by fireworks. The results are shown in table \ref{tab:tfidf-terms}. As the table shows, the implementation is working as expected - more relevant words, such as 'ablaze', have higher tf-idf values, indicating a higher relevance, and terms such as 'and' and 'football' have a much lower, negligible value.
+\\
+\end{minipage}
+\hspace{5mm}
+\begin{minipage}{0.3\linewidth}
+\vspace{-2mm}
+\begin{tabular}{ll}
+\textbf{Term} & \textbf{tf-idf value} \\
+ablaze & 421.500 \\
+fireworks & 168.600 \\
+explosive & 93.667 \\
+the & 0.089 \\
+and & 0.058 \\
+football & 0.000
+\end{tabular}
+\captionof{table}{tf-idf values for a range of terms}
+\label{tab:tfidf-terms}
+\end{minipage}
+
+To apply the algorithm to the problem, tf-idf was used to calculate the relevance of each word in an article's headline to its body text. A mean was then taken of those values, as shown below. A full code listing is available in the Github repository.\footnote{\url{https://github.com/jacobbarrow/honours/tree/master/experiments/tfidf.py}}
+
+\begin{lstlisting}[language=Python]
+for article in articles.values():
+    tfidfs = []
+    for word in article['headline']:
+        tfidfs.append(tfidf(word, article['body'], domain))
+
+    mean = numpy.mean(tfidfs)
+\end{lstlisting}
+
+The mean will give an overall relevance between the headline and body of an article. The means were classified according to the article's labelled stance (agree/disagree), and then analysed. For articles labelled as agree, the average tf-idf mean of their headlines was 0.1167. For those labelled disagree, the average was 0.0718. While this difference may initially seem promising, with a p-value of 0.26281 the results must be rejected.
+
+This result is dissapointing, but expected; tf-idf is used to determine the relevance of a word to a document, and does not take into account the overall sentiment of the document. For instance, consider the following two statements:
+
+\begin{itemize}
+	\item Mauve is a trendy colour to paint a house
+	\item The worst colour to paint a house is mauve
+\end{itemize}
+
+For both of them, the term 'mauve' appears the same number of times, so according to tf-idf will have identical relevance. However, the sentiments of each statement are opposed, something unable to be determined by just the relevance alone. 
+
+Additionally, using the mean of all headline values may be 'muddying the waters' of the relevancy, as happened in the word vectorisation experiment. However, this may not be as strong a factor, as the difference between a relevant word and an irrelevant word is large, as seen in table \ref{tab:tfidf-terms}, above.
 
