@@ -1,7 +1,7 @@
 import numpy
 
 import utils
-from db_files import load
+from fnc import load
 
 articles = load.FNC()
 

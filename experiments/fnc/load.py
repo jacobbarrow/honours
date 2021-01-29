@@ -9,7 +9,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 def FNC():
     articles = {}
 
-    with open(f'{dir_path}/fnc/train_stances.csv', newline='\n') as csvfile:
+    with open(f'{dir_path}/train_stances.csv', newline='\n') as csvfile:
         csv_reader = csv.DictReader(csvfile)
         for row in csv_reader:
             # Disregard unrelated stances - out of scope
@@ -17,7 +17,7 @@ def FNC():
                 articles[row['Body ID']] = {'headline': row['Headline'],
                                             'stance': row['Stance']}
 
-    with open(f'{dir_path}/fnc/train_bodies.csv', newline='\n') as csvfile:
+    with open(f'{dir_path}/train_bodies.csv', newline='\n') as csvfile:
         csv_reader = csv.DictReader(csvfile)
         for row in csv_reader:
             try:
@@ -28,5 +28,18 @@ def FNC():
     return articles
 
 
+def CSV(filename):
+    articles = []
+    with open(f'{dir_path}/{filename}.csv', newline='\n') as csvfile:
+        csv_reader = csv.DictReader(csvfile, delimiter=",", quotechar="|")
+        for row in csv_reader:
+            try:
+                articles.append(row)
+            except KeyError:
+                pass  # Relates to an article we've discarded
+
+    return articles
+
+
 if __name__ == '__main__':
-    print(f'FNC length: {len(FNC())}')
+    CSV('bbc-on-this-day')

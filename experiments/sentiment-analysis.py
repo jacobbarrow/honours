@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 import utils
-from db_files import load
+from fnc import load
 
 analyzer = SentimentIntensityAnalyzer()
 articles = load.FNC()

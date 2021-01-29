@@ -3,7 +3,7 @@ import numpy
 from gensim.models import Word2Vec
 
 import utils
-from db_files import load
+from fnc import load
 
 
 def getAverageVector(words):
