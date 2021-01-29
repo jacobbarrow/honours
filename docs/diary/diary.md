@@ -7,7 +7,7 @@ output:
 
 # Project Diary
 
-## Week 2 (17/09/20)
+## TR1 Week 2 (17/09/20)
 
 ### Meeting notes
 This first meeting was a group meeting, so only covered the more general admin side of the project - we went over the basic structure it could take, some of the ways of keeping on track and managing time, and loosley covered the development cycle of iteration and testing. 
@@ -107,3 +107,14 @@ This week has been less productive than previous weeks, but I was able to tidy u
 ### Meeting notes
 Due to time constraints this was a shorter meeting than usual. We covered my concerns about not having the skillset to do the task - NLP isn't something I've come across before in my studies. Simon suggested a range of NLP technologies to look into, such as word2vec, bag of words, and one hot encoding. 
 For next week, I'll read about these other NLP approaches, and start to think about creating the classifier.
+
+
+## TR2 Week 2 (26/01/21)
+
+### Progress since last meeting
+Over the Christmas break I worked on tidying up the current state of the dissertation, adding some basic framework to the sections and formatting the experiments. I also researched and wrote up sections on lexical similarity and tf-idf. I was able to do an experiment with tf-idf, but the results showed it wasn't suited to detecting congrouence.
+
+### Meeting notes
+We talked about the work I had done over the break, and I raised the point that all the experiments I'd done so far had failed, in the sense that none of the approaches would help with the overall project's aim. Simon mentioned this wasn't a fatal problem in the project, and clarified that the aim is not to answer the question but to attempt to answer it. We talked about next steps, such as looking at summarisation, and doing analysis on the dataset I had collected so far.
+
+I also made the decision to stop work on the labelled dataset, even though not enough responses have been collected - it is now unlikely the labelled dataset would be used as a classifer may not be built, and there are more important things in the project that require my time. 
