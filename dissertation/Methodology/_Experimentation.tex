@@ -1,4 +1,4 @@
-\subsection{Congruence Experimentation}
+\subsection{Congruence Experimentation}\label{experimentation}
 To create the classifier, the efficacy of individual approaches needs to be evaluated. The general structure of each experiment run takes the following form:
 
 \begin{enumerate}
@@ -105,5 +105,5 @@ This result is dissapointing, but expected; tf-idf is used to determine the rele
 
 For both of them, the term 'mauve' appears the same number of times, so according to tf-idf will have identical relevance. However, the sentiments of each statement are opposed, something unable to be determined by just the relevance alone. 
 
-Additionally, using the mean of all headline values may be 'muddying the waters' of the relevancy, as happened in the word vectorisation experiment. However, this may not be as strong a factor, as the difference between a relevant word and an irrelevant word is large, as seen in table \ref{tab:tfidf-terms}, above.
+Additionally, using the mean of all headline values may be 'muddying the waters' of the relevancy, as happened in the word vectorisation experiment. However, this may not be as strong a factor, as the difference between a relevant word and an irrelevant word is large, as seen in table \ref{tab:tfidf-terms}, and so would have a greater effect on the mean.
 

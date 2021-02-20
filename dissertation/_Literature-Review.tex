@@ -223,3 +223,25 @@ This augments \(f_{ij}\), as it divides it by the maximum number of occurences o
 With both these elements in place, the overall tf-idf is calculated using \(TF_{ij} \times IDF_i\). The higher the output, the more likely it is the term \(i\) represents the content of the document \(j\).
 
 tf-idf could potentially be used to tackle the problem of identifying incongruence by substituting the search term for the article's headline and the document for the article's body. Its ability to detect relevance could then be used to provide a measure of similarity between the two. However, this approach may only be of use for articles that have a strong disparity between headline and body; it is unlikely to identify subtle differences in text as it is designed for obtaining a broad measure of relevance.
+
+
+\subsubsection{Text Summarisation}
+
+Text summarisation is the process of distilling a body of text into a shorter format by identifying the essential facts and disregarding the rest. Techniques can be described as either \textit{extractive} or \textit{abstractive}  \cite{maybury1999} \cite{tan2017}.
+
+\paragraph{Extractive Summarisation}
+Extractive approaches to summarisation search within the text for key information and then reproduce it word for word \cite{tan2017}. For instance, in the below paragraph the key information has been emboldened.
+
+\textit{On a rainy Sunday, \textbf{Felix went to the supermarket}. While he was there he wandered through the aisles and eventually he \textbf{bought a jar of honey}, which was on sale. When he got home he spread it with wild abandon onto \textbf{some toast}.}
+
+A summary can be constructed using these core facts to represent the gist of the text, but remove the superflous information like so:
+
+\textit{Felix went to the supermarket and bought a jar of honey for some toast}
+
+In order to rank the importance of phrases to determine the key facts, a sentence score is calculated using a variety of indicators, using a machine learning to weight each indicator. Depending on the approach used, either the best sentences or an optimised set of the sentences are selected and used to generate the summary.
+
+\paragraph{Abstractive Summarisation}
+Conversely, abstractive approaches present the information in the text in a new way, using different words and phrases to construct a conciser and more natural summarisation \cite{allahyari2017}. As synthesing language in this way is not trivial - it requires an understanding of the context, relevance and importance of each phrase, meaning classical NLP approaches aren't best suited to the task. A range of advanced approaches have been used for abstractive summarisation. \citeauthor{xu2010} created a system that finds key terms from the text on Wikipedia, and then use the technique of keyword clustering to determine replacements and construct a summary. \citeauthor{banko2000} view the task of summarisation from the point of view of text translation, instead of one of text comprehension. They use a statistical approach to machine translation to translate the text from a verbose language to a concise one, and in doing so were able to introduce new text into the system - for instance, it correctly generated "soybean grain prices lower" from the phrase "Corn, Wheat Prices Fall".
+
+\paragraph{}
+By using summarisation to generate a single sentence from an article of text (known as extreme summarisation), a headline can be generated. Abstractive summarisation is best suited for headline generation, as an understanding of the content of the article is required to distill it down so heavily \cite{hayashi2018}. Additionally the nuances of headlines (for instance, using puns and sarcasm) may mean that the phrases in them don't appear in the main body, even though they are relevant to it. As this project focusses on classical NLP methods, as opposed to machine-learning approaches, abstractive summarisation is out of scope.
