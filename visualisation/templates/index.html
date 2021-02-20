@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Visualisation</title>
+</head>
+<body>
+    <header>
+        <h1>Data Visualisation</h1>
+    </header>
+    <main>
+        <section>
+            <figure>
+                Graph...
+            </figure>
+            <button name="download-csv">Download .csv file</button>
+        </section>
+
+
+        <form action="/" method="POST">
+            <div class="column">
+                <fieldset data-for="source">
+                    <legend>Data Source</legend>
+                    <div class="checkbox-wrap">
+                        <input id="source_ind-a" name="source_ind-a" type="checkbox">
+                        <label for="source_ind-a">Independent (Archive)</label>
+                    </div>
+                    <div class="checkbox-wrap">
+                        <input id="source_bbc-a" name="source_bbc-a" type="checkbox">
+                        <label for="source_bbc-a">BBC (Archive)</label>
+                    </div>
+                    <div class="checkbox-wrap">
+                        <input id="source_bbc-d" name="source_bbc-d" type="checkbox">
+                        <label for="source_bbc-d">BBC Daily</label>
+                    </div>
+                    <div class="checkbox-wrap">
+                        <input id="source_gua-d" name="source_gua-d" type="checkbox">
+                        <label for="source_gua-d">Guardian (Daily)</label>
+                    </div>
+                    <div class="checkbox-wrap">
+                        <input id="source_huf-d" name="source_huf-d" type="checkbox">
+                        <label for="source_huf-d">Huffington Post (Daily)</label>
+                    </div>
+                    <div class="checkbox-wrap">
+                        <input id="source_mai-d" name="source_mai-d" type="checkbox">
+                        <label for="source_mai-d">Daily Mail (Daily)</label>
+                    </div>
+                </fieldset>
+                <fieldset data-for="period">
+                    <legend>Data Period</legend>
+                    <div class="input-wrap">
+                        <label for="period_start">Start Date (Inclusive)</label>
+                        <input id="period_start" name="period_start" type="date">
+                    </div>
+                    <div class="input-wrap">
+                        <label for="period_end">End Date (Inclusive)</label>
+                        <input id="period_end" name="period_end" type="date">
+                    </div>
+                    <div class="checkbox-wrap">
+                        <input id="period_full" name="period_full" type="checkbox">
+                        <label for="period_full">All available articles</label>
+                    </div>
+                </fieldset>
+
+                <fieldset data-for="resolution">
+                    <legend>Data Resolution</legend>
+
+                    <div class="radio-wrap">
+                        <input id="resolution_highest" name="resolution" value="highest" type="radio">
+                        <label for="resolution_highest">Highest</label>
+                    </div>
+
+                    <div class="radio-wrap">
+                        <input id="resolution_day" name="resolution" value="day" type="radio" checked>
+                        <label for="resolution_day">Day</label>
+                    </div>
+                    <div class="radio-wrap">
+                        <input id="resolution_week" name="resolution" value="week" type="radio">
+                        <label for="resolution_week">Week</label>
+                    </div>
+                    <div class="radio-wrap">
+                        <input id="resolution_month" name="resolution" value="month" type="radio">
+                        <label for="resolution_month">Month</label>
+                    </div>                   
+                </fieldset>
+
+            </div>
+            <div class="column" aria-live="polite">
+                <fieldset data-for="analysis">
+                    <legend>Analysis</legend>
+                    <div class="input-wrap">
+                        <label for="analysis_method">Method</label>
+                        <select name="analysis_method" id="analysis_method">
+                            <option value="none">None</option>
+                            <option value="tfidf">TF-IDF</option>
+                            <option value="sentiment">Sentiment Analysis</option>
+                        </select>
+                    </div>
+                    <div class="analysis-options" data-for="tfidf" aria-hidden="true">
+                        <fieldset>
+                            <legend>TF-IDF Options</legend>
+                            // tfidf option here
+                        </fieldset>
+                    </div>
+                    <div class="analysis-options" data-for="sentiment" aria-hidden="true">
+                        <fieldset>
+                            <legend>Sentiment Analysis Options</legend>
+                            <div class="checkbox-wrap">
+                                <input id="options_sentiment-pos" name="options_sentiment-pos" type="checkbox">
+                                <label for="options_sentiment-pos">Positive</label>
+                            </div>
+                            <div class="checkbox-wrap">
+                                <input id="options_sentiment-neg" name="options_sentiment-neg" type="checkbox">
+                                <label for="options_sentiment-neg">Negative</label>
+                            </div>
+                            <div class="checkbox-wrap">
+                                <input id="options_sentiment-neu" name="options_sentiment-neu" type="checkbox">
+                                <label for="options_sentiment-neu">Neutral</label>
+                            </div>
+                            <div class="checkbox-wrap">
+                                <input id="options_sentiment-com" name="options_sentiment-com" type="checkbox">
+                                <label for="options_sentiment-com">Compound</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </fieldset>
+                <button name="generate_graph" action="submit">Generate graph</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="{{ url_for('static', filename='form.js') }}"></script>
+</body>
+</html>

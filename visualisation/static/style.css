@@ -1,0 +1,83 @@
+:root {
+    --max-page-width: 800px;
+    --gutter: 40px; /* used for consistent spacing */
+
+    --primary-colour: #1B5E20;
+    --primary-colour-light: #E8F5E9;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body, form, h1, fieldset, header, main {
+    padding: 0;
+    margin: 0
+}
+
+header {
+    background: var(--primary-colour-light);
+}
+
+header h1, main {
+    max-width: var(--max-page-width);
+    margin: 0 auto
+}
+
+header h1 {
+    color: var(--primary-colour);
+    padding: var(--gutter) 0 calc(var(--gutter) / 2) 0;
+    font-family: sans-serif;
+}
+
+
+section {
+    margin-bottom: var(--gutter);
+}
+
+form {
+    display: flex;
+    margin-bottom: var(--gutter)
+}
+
+form .column {
+    width: 50%;
+}
+
+form .column:last-of-type {
+    margin-left: var(--gutter);
+}
+
+form fieldset {
+    padding: calc(var(--gutter) / 2);
+    border-color: var(--primary-colour);
+}
+
+form fieldset:not(:last-of-type) {
+    margin-bottom: var(--gutter);
+}
+
+form .checkbox-wrap {
+    margin: calc(var(--gutter) / 8) 0;
+}
+
+form .input-wrap {
+    margin: calc(var(--gutter) / 4) 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+form .analysis-options {
+    display: none;
+}
+
+form button {
+    margin-top: var(--gutter);
+    float: right;
+}
+
+form .error {
+    margin-top: calc(var(--gutter) / 2);
+    color: var(--primary-colour);
+}
