@@ -5,7 +5,7 @@ SOURCES = {
     'bbc-d': 'bbc-daily',
     'gua-d': 'guardian-daily',
     'huf-d': 'huffpost-daily',
-    #'ind-a': 'independent-archive',
+    'ind-a': 'independent-archive',
     'mai-d': 'mail-daily'
 }
 

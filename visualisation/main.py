@@ -1,13 +1,39 @@
-from flask import Flask, render_template, request, jsonify, redirect
-from werkzeug.wrappers import Request
+from flask import Flask, render_template, request, jsonify, redirect, g, session, make_response
+import sqlite3
+import numpy
 from datetime import datetime
 
+from analysis import sentiment
+import os
+
 app = Flask(__name__)
+
+analysed_data = []
 
 class FormError(Exception):
     def __init__(self, fieldset, message):
         self.fieldset = fieldset
         self.message = message
+
+# Singleton pattern for db from https://flask.palletsprojects.com/en/1.1.x/patterns/sqlite3/
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect('compiled.sqlite')
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+def query_db(query, args=(), one=False):
+    cur = get_db().execute(query, args)
+    rv = cur.fetchall()
+    cur.close()
+    return (rv[0] if rv else None) if one else rv
+
 
 @app.route('/', methods=['GET'])
 def showForm():
@@ -15,6 +41,7 @@ def showForm():
 
 @app.route('/', methods=['POST'])
 def processForm():
+    global analysed_data
 
     # Get the variables in a try/except to allow for validation through FormError exceptions
     try:
@@ -34,6 +61,8 @@ def processForm():
 
             if period_start >= period_end:
                 raise FormError('period', 'Please specify a start date before the end date')
+        
+        data_resolution = int(request.form['data_resolution'])
 
     except FormError as e:
         error_message = e.message.replace(' ', '%20')
@@ -46,10 +75,59 @@ def processForm():
     if period_full:
         formatted_period = ''
     else:
-        formatted_period = f"AND date BETWEEN '{period_start.strftime('%Y-%m-%d')}' AND {period_end.strftime('%Y-%m-%d')}"
+        formatted_period = f"AND articles.date BETWEEN '{period_start.strftime('%Y-%m-%d')}' AND {period_end.strftime('%Y-%m-%d')}"
 
-    # Construct the query
-    sql_query = f"SELECT * FROM db WHERE source IN ({formatted_sources}) {formatted_period}"
 
-    return jsonify(sql_query)
+    if data_resolution != '0':
 
+        # This sql query was sourced from https://stackoverflow.com/questions/66302739/sql-query-to-select-records-with-altering-granularity
+        sql_query = f"""
+            WITH cte(date) AS (
+                SELECT MIN(date) FROM articles
+                UNION ALL
+                SELECT date(date, '+{data_resolution} days')
+                FROM cte
+                WHERE date(date, '+{data_resolution} days') <= (SELECT MAX(date) FROM articles)
+            )
+            SELECT articles.* 
+            FROM articles INNER JOIN cte
+            ON cte.date = articles.date
+            WHERE articles.source IN ({formatted_sources}) {formatted_period}
+            GROUP BY articles.date"""
+
+    else:
+        # Construct the query
+        sql_query = f"SELECT * FROM articles WHERE source IN ({formatted_sources}) {formatted_period}"
+
+
+    query_result = query_db(sql_query)
+    
+
+    if request.form['analysis_method'] != 'none':
+        
+        if request.form['analysis_method'] == 'sentiment':
+
+            analysed_data = {}
+
+            # Calculate the analysis
+            analysed_data['headline'] = {}
+            analysed_data['body'] = {}
+            for row in query_result:
+                analysed_data['headline'][row[4]] = sentiment.analyse((row[2]))['compound']
+                analysed_data['body'][row[4]] = sentiment.analyse((row[3]))['compound']
+
+
+            return redirect('/')
+    else:
+        return 'no'
+
+
+@app.route('/download')
+def download():
+    response = make_response(jsonify(analysed_data))
+    response.headers["Content-Disposition"] = "attachment; filename=analysis.json"
+    return response
+
+@app.route('/data')
+def data():
+    return jsonify(analysed_data)

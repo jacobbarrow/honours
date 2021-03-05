@@ -57,11 +57,11 @@ form fieldset:not(:last-of-type) {
     margin-bottom: var(--gutter);
 }
 
-form .checkbox-wrap {
+.checkbox-wrap {
     margin: calc(var(--gutter) / 8) 0;
 }
 
-form .input-wrap {
+.input-wrap {
     margin: calc(var(--gutter) / 4) 0;
 
     display: flex;

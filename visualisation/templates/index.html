@@ -14,11 +14,15 @@
     <main>
         <section>
             <figure>
-                Graph...
+                <canvas id="analysis_chart" width="500" height="400"></canvas>
             </figure>
-            <button name="download-csv">Download .csv file</button>
-        </section>
+            <div class="input-wrap">
+                <label for="average_slider">Smoothing</label>
+                <input id="average_slider" type="range" min="1" max="25" step="1" value="10">
 
+            </div>
+            <a href="/download" id="download" target="blank">Download .json</a>
+        </section>
 
         <form action="/" method="POST">
             <div class="column">
@@ -29,7 +33,7 @@
                         <label for="source_ind-a">Independent (Archive)</label>
                     </div>
                     <div class="checkbox-wrap">
-                        <input id="source_bbc-a" name="source_bbc-a" type="checkbox">
+                        <input id="source_bbc-a" name="source_bbc-a" type="checkbox" checked>
                         <label for="source_bbc-a">BBC (Archive)</label>
                     </div>
                     <div class="checkbox-wrap">
@@ -60,43 +64,26 @@
                         <input id="period_end" name="period_end" type="date">
                     </div>
                     <div class="checkbox-wrap">
-                        <input id="period_full" name="period_full" type="checkbox">
+                        <input id="period_full" name="period_full" type="checkbox" checked>
                         <label for="period_full">All available articles</label>
                     </div>
                 </fieldset>
-
-                <fieldset data-for="resolution">
-                    <legend>Data Resolution</legend>
-
-                    <div class="radio-wrap">
-                        <input id="resolution_highest" name="resolution" value="highest" type="radio">
-                        <label for="resolution_highest">Highest</label>
-                    </div>
-
-                    <div class="radio-wrap">
-                        <input id="resolution_day" name="resolution" value="day" type="radio" checked>
-                        <label for="resolution_day">Day</label>
-                    </div>
-                    <div class="radio-wrap">
-                        <input id="resolution_week" name="resolution" value="week" type="radio">
-                        <label for="resolution_week">Week</label>
-                    </div>
-                    <div class="radio-wrap">
-                        <input id="resolution_month" name="resolution" value="month" type="radio">
-                        <label for="resolution_month">Month</label>
-                    </div>                   
-                </fieldset>
-
             </div>
             <div class="column" aria-live="polite">
                 <fieldset data-for="analysis">
                     <legend>Analysis</legend>
+
+                    <div class="input-wrap">
+                        <label for="data_resolution">Data Resolution (days)</label>
+                        <input id="data_resolution" name="data_resolution" type="number" min="1" step="1" value="10">   
+                    </div>   
+
                     <div class="input-wrap">
                         <label for="analysis_method">Method</label>
                         <select name="analysis_method" id="analysis_method">
                             <option value="none">None</option>
                             <option value="tfidf">TF-IDF</option>
-                            <option value="sentiment">Sentiment Analysis</option>
+                            <option value="sentiment" selected>Sentiment Analysis</option>
                         </select>
                     </div>
                     <div class="analysis-options" data-for="tfidf" aria-hidden="true">
@@ -132,6 +119,9 @@
         </form>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
     <script src="{{ url_for('static', filename='form.js') }}"></script>
+    <script src="{{ url_for('static', filename='graph.js') }}"></script>
 </body>
 </html>
