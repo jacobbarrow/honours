@@ -18,6 +18,7 @@
 \usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
 \usepackage[toc,page]{appendix}
 \usepackage{url}
+\usepackage[multiple]{footmisc}
 
 \makeatletter
 \renewcommand\paragraph{%
@@ -117,8 +118,6 @@ Insert acknowledgements here
 \pagebreak
 \input{./_Analysis.tex}
 \pagebreak
-\section{Conclusion}
-\pagebreak
 
 \bibliographystyle{apacite}
 \bibliography{bibliography}
@@ -177,6 +176,13 @@ Insert a copy of the project review form you were given at the end of the review
 
 \subsection{Implementation} \label{app:vis-implementation}
 \includegraphics[width=\linewidth]{../visualisation/implementation.png}
+
+\subsection{Independent Archive Raw Analysis} \label{app:vis-ind-raw}
+\includegraphics[width=\linewidth]{../visualisation/ind-raw.png}
+
+\subsection{Comparison of all sources Raw Analysis} \label{app:vis-all-raw}
+\includegraphics[width=\linewidth]{../visualisation/comparison-raw.png}
+
 \end{subappendices}
 
 \end{appendices}

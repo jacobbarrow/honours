@@ -5,8 +5,8 @@ Creating a platform to visualise and identify trends using the NLP approaches di
 In order to be effective, the visualiser should:
 \begin{itemize}
 	\item Allow for a downloadable export of the analysed data
-	\item Be able to generate graphs, using a range of NLP approaches to create datapoints based on the dataset
-	\item Have a non-obstrusive, simple design	
+	\item Be able to generate graphs, using a range of NLP approaches to create data points based on the dataset
+	\item Have a non-obtrusive, simple design	
 	\item Allow a user to identify trends in the dataset
 \end{itemize}
 
@@ -14,23 +14,23 @@ In order to be effective, the visualiser should:
 \subsubsection{Design and Frontend Implementation}
 To keep things simple, the design of the visualiser was kept to a one-page layout. Appendix \ref{app:vis-wireframe} shows a rudimentary wireframe of this layout. 
 
-The front end was written in HTML and CSS, with accessiability as a key concern. Semantic HTML5 elements were used, which enhances screen reader navigation and comprehension, and the form has a logical structure. Additionally, changes to the dynamic element of the form (changing the analysis technique used) was broadcast using the ARIA standard\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions}}. These ARIA regions were updated using JavaScript.
+The front end was written in HTML and CSS, with accessibility as a key concern. Semantic HTML5 elements were used, enhancing screen reader navigation and comprehension, and the form has a logical structure. Additionally, changes to the dynamic element of the form (changing the analysis technique used) were broadcast using the ARIA standard\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions}}. These ARIA regions were updated using JavaScript.
 
-The bar chart was generated using chart.js\footnote{\url{https://www.chartjs.org/}}, an open-source JavaScript library that allows for real-time updates, which was important - in order to identify trends a moving average was used, which can be adjusted without reanalysing the data.
+The bar chart was generated using chart.js\footnote{\url{https://www.chartjs.org/}}, an open-source JavaScript library that allows for real-time updates, which was important - in order to identify trends, a moving average was used, which can be adjusted without reanalysing the data.
 
 Appendix \ref{app:vis-implementation} shows the front-end implementation of the visualiser.
 
 
 \subsubsection{Backend Implementation}
-The backend of the visualisation site was created using Python, with Flask to serve the content. This allowed for quick prototyping and easy database interaction - the articles were stored in an sqlite database (compiled in section \ref{data-compilation}).
+The backend of the visualisation site was created using Python, with Flask to serve the content. This allowed for quick prototyping and easy database interaction - the articles were stored in an SQLite database (compiled in section \ref{data-compilation}).
 
-Sentiment analysis was the only approach technique implemented in the visualisation. This decision was made as each analysis method would require a bespoke approch to charting the data, which, in the interests of project management, would not have been practical to produce. Additionally, from informal experimentation, sentiment analysis produced the strongest and most informative trends out of the approaches tested.
+Sentiment analysis was the only approach technique implemented in the visualisation. This decision was made as each analysis method would require a bespoke approach to chart the data, which would not have been practical to produce in the interests of project management. Additionally, sentiment analysis produced the most robust and informative trends out of the approaches tested from informal experimentation.
 
-To pass data back to the frontend, a \texttt{/data} route was created. When queried via an AJAX request, it returns a JSON representation of the last analysis that was run. While this means further modification would be required to have a stable use at scale, it allowed for an efficient front-end development, as a new analysis did not have to be conducted for each minor change. This same concept is used to allow a user to save the data - a \texttt{/download} route returns the JSON with a header that forces the browser to download it to a file.
+To pass data back to the front-end, a \texttt{/data} route was created. When queried via an AJAX request, it returns a JSON representation of the last analysis that was run. While this means further modification would require regular use at scale, it allowed for an efficient front-end development, as a new analysis did not have to be conducted for each minor change. This same concept allows a user to save the data - a \texttt{/download} route returns the JSON with a header that forces the browser to download it to a file.
 
 \subsubsection{Analysis}
-There are several improvements that could be made to the visualiser. For instance, the only implemented approach was sentiment analysis, as mentioned above. However, the code has been written to be extensible, and further methods can be added with relative ease.
+Several improvements could be made to the visualiser. For instance, the only implemented approach was sentiment analysis, as mentioned above. However, the code has been written to be extensible, and further methods can be added with relative ease.
 
-The visualiser is quite slow - for larger analysises, with tens of thousands of articles, it can take several minutes, during which time the browser hangs. This makes for a poor user experience, as there is no feedback on progress. To overcome this, a queue system could be implemented, where each analysis forms a job, which a user can check in on.
+The visualiser is relatively slow - for larger analyses, with tens of thousands of articles, it can take several minutes, during which time the browser hangs. This makes for a poor user experience, as there is no feedback on progress. To overcome this, a queue system could be implemented, where each analysis forms a job, which a user can check in on.
 
-However, the visualiser meets the majority of the specification. It allows for the analysed data to be downloaded, has a simple, understandable design, and lets a user manipulate the data to find trends.
+However, the visualiser meets the majority of the specification. It allows for the analysed data to be downloaded, has a simple, understandable design, and lets users manipulate the data to find trends.

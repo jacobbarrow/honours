@@ -1,26 +1,28 @@
 \section{Introduction}
-Fake news, disinformation and misleading articles have been the subject of much debate and controversy. With the decline of traditional print media, more people turn to online sources for news, where publishing has a much lower barrier to entry.
+Fake news, disinformation and misleading articles have been the subject of much debate and controversy. With the decline of traditional print media, more people turn to online sources for news; publishing has a much lower entry barrier, making it an easier target to spread false information.
 
-Incongruous headlines misrepresent the content of an article and, intentional or not, can lead to the formation of unfounded opinions and misconstrued facts. To combat this, existing articles should be analysed to ascertain the extent of the problem, and a system created whereby the congruence of new articles can be determined.
+Incongruous headlines misrepresent an article's content and,
+intentional or not, can lead to the formation of unfounded opinions and misconstrued facts. Existing articles should be analysed to ascertain the extent of the problem, and a system created whereby unseen articles' congruence can be determined.
 
-Considering the rate at which publishers output news articles, it would be impractical for a human-scale operation to undertake this task. Therefore, this dissertation seeks to create a classifier capable of calculating a measure of a headline's incongruence, by utilising Natural Language Processing (NLP) to analyze the components of a news article.
+Considering the rate at which publishers output news articles, it would be impractical for a human-scale operation to undertake this task. Therefore, this dissertation seeks to create a classifier capable of calculating a measure of a headline's incongruence by utilising Natural Language Processing (NLP) to analyze the components of a news article.
 
-As the laws of natural language - the spoken and written means by which humans communicate with each other - are uncodified, blurry and change from generation to generation, analysing the meaning of text poses a considerable challenge.  For instance, while the sentiment of a headline may be completely at odds with an article's content, this could potentially be a sarcastic or ironic technique used by the publisher.
+As the laws of natural language - the spoken and written means by which humans communicate with each other - are uncodified, blurry and change from generation to generation, analysing the meaning of text poses a considerable challenge. For instance, while the sentiment of a headline may be entirely at odds with an article's content, this could potentially be a sarcastic or ironic technique used by the publisher.
 
-Overcoming these obstacles requires a thorough understanding of NLP, and the range of approaches and techniques used to identify and extract meaning from text.
+Overcoming these obstacles requires a thorough understanding of NLP and the range of approaches and techniques used to identify and extract meaning from text.
 
-A considerable set of articles will need to be created, with both a longitudinal aspect spanning a large period of time, and a cross-section of the current state of online news articles. Additionally, to provide both a baseline and a method of training a classifier, a portion of this dataset will need to be labelled with absolute values of congruence.
+A considerable set of articles will need to be created, with both a
+longitudinal aspect spanning an extensive period and a cross-section of current online news articles. Additionally, to provide both a baseline and a method of training a classifier, a portion of this dataset will need to be labelled with absolute values of congruence.
 
 
 \subsection{Aims}
-The primary aim of this dissertation is to create an incongruence classifier. Additionally, a large dataset of news articles will be created and a subsection of them labelled.
+The primary aim of this dissertation is to create an incongruence classifier. Additionally, a large dataset of news articles will be created, and a subsection of them labelled.
 
 \subsection{Research Questions}
-In order to judge the success of the project, and to provide a direction for research, this dissertation seeks to answer the following questions:
+In order to judge the success of the project and to provide a direction for research, this dissertation seeks to answer the following questions:
 \begin{itemize}
 	\item To what extent do incongruent articles exist in current contemporary online news?
 	\item How, if at all, has the language of news articles changed over the past decade?
-	\item How effective is statistical NLP in determining the congruence of a news article's headline?
+	\item How useful is statistical NLP in determining the congruence of a news article's headline?
 \end{itemize}
 
 \subsection{Project Outline}
@@ -30,16 +32,16 @@ The project will consist of a range of deliverables and milestones.
 A literature review will be undertaken to provide context to the project and define its scope
 
 \paragraph{Data collection}
-In order to provide the algorithm with articles to classify, a dataset is required. It will be sourced from a range of publishers, and idealy cover a large timescale to allow trends to be identified.
+To provide the algorithm with articles to classify, a dataset is required. It will be sourced from several publishers and ideally cover a large timescale to allow trends to be identified.
 
 \paragraph{Data Labelling}
-A raw dataset can be made more valuable by creating a training set from it. This will be a small subsection of the articles that volunteers will label with their perception of the incongruence.
+A raw dataset can be made more valuable by creating a training set from it. The set will be a small subsection of the articles that volunteers will label with their incongruence judgement.
 
 \paragraph{Algorithm Creation}
 Once a dataset is generated and labelled, the algorithm to classify the articles can be implemented. 
 
 \paragraph{Visualisation}
-The breadth of the raw dataset will make it unweildy to work with, so a platform will be created to aid with the visualisation and management of it.
+The breadth of the raw dataset will make it unwieldy to work with, so a platform will be created to aid with the visualisation and management of it.
 
 \paragraph{Analysis}
 The algorithm will create a range of data points that can be analysed. Trends will be spotted in the dataset used, and comparisons made with different implementations of the algorithm.
