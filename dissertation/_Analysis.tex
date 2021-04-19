@@ -3,7 +3,7 @@
 \section{Analysis of Data}
 The visualiser created in section \ref{vis} was used to analyse the trend in sentiment from different perspectives.
 
-\subsection{Longitudinal analysis}
+\subsection{Longitudinal analysis}\label{ana:long}
 The Independent archive scraped contains articles from 2011 to 2018, offering just over seven years of news. When the headline and body's sentiment were initially analysed, there was a high noise level present in the data, as shown in appendix \ref{app:vis-ind-raw}. However, a rolling average was applied using the smoothing feature of the visualiser, and a more apparent trend appeared, shown in figure \ref{fig:smooth-ind}.
 
 \begin{figure}[ht!]
@@ -32,12 +32,42 @@ One of the trends that appears in the chart is that the Huffington Post has the 
 
 Another interesting trend is the peak in the average sentiment of all sources towards the end of the year. This could be because of the Christmas holidays, or even because the general sentiment at the time is that the new year would mark a change in the tide of the pandemic \footnote{\url{https://www.independent.co.uk/news/uk/home-news/covid-vaccine-climate-change-remote-working-b1768098.html}}\footnote{\url{https://www.aarp.org/health/conditions-treatments/info-2020/coronavirus-2021.html}}.
 
-
 \section{Conclusion}
 
-From the experiments conducted in section \ref{experimentation} and the review of the literature in section \ref{lit}, it is clear the statistical natural language processing methods are not sufficient to identify the nuances incongruence. 
+From the experiments conducted in section \ref{experimentation} and the review of the literature in section \ref{lit}, it is clear the statistical natural language processing methods are not sufficient to identify the nuances of incongruence. 
 
-While classical approaches can identify the general gist of a piece of text, articles can become incongruent through a subtle remark or a seeming off-hand turn of phrase, which cannot be detected using the methods investigated in the project. 
+While classical approaches can identify the general gist of a piece of text, articles can become incongruent through a subtle remark or a seeming off-hand turn of phrase, which cannot be detected using the methods investigated in this project. 
+
+\subsection{Analysis against the project aims}
+
+In section \ref{int:qs}, several research questions are posed that this project sought to answer.
+
+The second question has been addressed in section \ref{ana:long} - the language of news articles has varied considerably over the past decade and followed trends that closely mirror real-world events.
+
+The third question has been considered throughout this dissertation - statistical NLP cannot determine the congruence of a news article's headline using the approaches investigated here. This ties closely with the first question, which has gone unanswered. As a classifier was not created, analysis on the collected dataset can not be undertaken. It is hoped a future researcher will seek to answer this unresolved question.
+
+\subsection{Analysis against the work of others}
+
+As mentioned at the end of the literature review (section \ref{lit:sum}), statistical NLP has not been applied to incongruence detection before, making a comparison against other's work difficult.
+
+However, others have also found limitations of statistical NLP. \citeauthor{manning1999} finds that problems arise when classical NLP techniques are given to long, complicated sections of text - the approaches used are unable to produce 'grammatical judgements' for convoluted sentences. This mirrors the difficulties faced in this project - while a headline's meaning is relatively simple to extract, understanding a long news article and distilling it to a single 'truth' is where the challenge lies.
+
+\citeauthor{sag2002} also ran into problems with NLP. They found that multi-word expressions (such as 'every which way'), particularly idioms (such as 'kick the bucket'), tend to cause issues for NLP. This is because they may subvert a grammatical rule and could require cultural context to have meaning. In the setting of this project, a similar issue arises. News article headlines often use idioms and short, catchy phrases to draw in a reader with humour. For instance, in the (fictional) headline 'Heinz CEO spills the beans in this exclusive interview', the idiom 'spills the beans' is used to construct a pun, with great effect. However, this headline may be misinterpreted by a congruence classifier; seeing no mention of a bean spillage, it could incorrectly mark the article's headline as incongruent.
+
+\subsection{Self Apprasial}
+
+This section provides a review from a personal perspective, and as such uses an informal writing style.
+
+I have found myself challenged in several aspects of this project and encountered several difficulties. I had previously not explored NLP and found a great deal of time covering the foundations and gaining a broad understanding. However, I found this very enjoyable and felt more confident in my abilities by the end of the literature review.
+
+Additionally, the lack of similar work in the field posed an issue. There was no clear starting point and no guarantee that I would produce a positive result. This was, at times, frustrating, and at certain points I found myself needing further motivation and guidance, for which I am thankful to my supervisor.  While the inability to produce a classifier is disheartening it raises a series of interesting questions, listed above. With hindsight, I would have researched more NLP approaches to be able to produce a broader set of experiments.
+
+Aside from these challenges, the project has gone smoothly. I was able to manage my time well, writing considerable chunks of the dissertation in tandem with developing the code required. I made sure to start the data collection process as soon as I could, as it was clear from the outset it would take several months. 
+
+My well-planned project management left me with plenty of excess towards the end of the project. I used this to both add some polish to the literature review and to also work on some additional features, such as the data visualisation website.
+
+Overall, while some issues and setbacks have occurred, they have been well managed, and the majority of the project has progressed well, gradually building a knowledge base, collecting a dataset and running a series of experiments.
+
 
 \subsection{Future Work}
 
@@ -51,9 +81,16 @@ Additionally, a visualiser has been created. This proof-of-concept website has b
 
 Finally, a vast dataset of 345k articles has been produced spanning several decades and from various sources. Included within these articles is a snapshot of the UK media as it reported on the most deadly pandemic to impact the nation since influenza in 1919. This wealth of data will hold a plethora of trends and insights waiting to be uncovered.
 
+Some broad questions have arisen from this work and could be used as prompts for further study:
+\begin{itemize}
+	\item Why is statistical NLP insufficient to detect incongruence in text?
+	\item To what extent are the articles in the collected dataset congruent?
+	\item What other trends in the dataset can be unearthed?	
+\end{itemize} 
 
 \subsection{Final Thoughts}
 
-Throughout this project it has become clear that statistical natural language techniques are not capable of detecting the twists and turns that news editors employ, intentionally or not, to mislead and decieve their readers. There's just too much nuance involved, and subtle misdirection is at play that conceals the true meaning of an article. This is a non-trivial problem that, if solveable, will require a great deal of research and computational power to overcome.
+Throughout this project, it has become clear that statistical natural language techniques are not capable of detecting the twists and turns that news editors employ, intentionally or not, to mislead and deceive their readers. There is just too much nuance involved, and subtle misdirection is at play that conceals the true meaning of an article. This is a non-trivial problem that, if solvable, will require a great deal of research and computational power to overcome.
 
-Nonetheless, the project has explored the breadth of NLP, as well as looking at classical techniques in depth. It has produced a range of outputs, from tools to help others collect and visualise data, to a substantial set of articles that span over half a century of national news. It is hoped that this work will be continued and future researchers uncover more trends and produce a classifier capable of detecting incongruent articles.
+Nonetheless, the project has explored the breadth of NLP, as well as looking at classical techniques in depth. It has produced a range of outputs, from tools to help others collect and visualise data to a substantial set of articles that span over half a century of national news. It is hoped that this work will be continued, and future researchers uncover more trends and produce a classifier capable of detecting incongruent articles.
+

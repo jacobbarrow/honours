@@ -2,9 +2,9 @@
 \subsection{Introduction}
 This study aims to create a method of detecting incongruence in news articles. Before the implementation begins, it is essential to review the existing literature to give the study context.
 
-This literature review begins by defining different several types of incongruence and specifies the bounds applicable to this study. 
+This literature review begins by defining several different types of incongruence and specifies the bounds applicable to this study. 
 
-It then goes on to evaluate several existing approaches, which are discussed to give a clearer picture of the field as it stands, and the gaps present in the research concerning incongruence detection. These sources are also analysed to gain some insight into a possible approaches to tackle the problem at hand.
+It then goes on to evaluate several existing approaches, which are discussed to give a clearer picture of the field as it stands, and the gaps present in the research concerning incongruence detection. These sources are also analysed to gain insight into possible approaches to tackle the problem at hand.
 
 Natural language processing (NLP) is then defined, and different features and approaches reviewed and discussed.
 
@@ -59,30 +59,35 @@ This sensationalism is intended to provoke and entertain, at times at the expens
 UK lockdown: March 29 rules loophole means you CAN go inside your pal or family’s home as restrictions ease \footnote{\url{https://www.thesun.co.uk/news/14453072/can-visit-garden-lockdown-eases-indoors-loo/}}
 \end{quote}
 
-This headline suggests that people will be able to socially gather inside someone else's house as a result of the ease of coronavirus restrictions, however, this is not the case. The article's body reveals that you can only enter a friend's house to use the toilet or if you're walking through to access an outdoor space such as a garden, and that meeting indoors is still banned.
- This example shows the danger of sensational headlines - by describing a deliberate, common-sense exception to a law as a loophole, readers may be under the false impression that it is acceptable to subvert restrictions and mix socially indoors.
+This headline suggests that people will be able to socially gather inside someone else's house as a result of the ease of coronavirus restrictions. However, this is not the case; the article's body reveals that you can only enter a friend's house to use the toilet or if you're walking through to access an outdoor space such as a garden, and that meeting indoors is still banned.
+ This example shows the danger of sensational headlines - by describing a deliberate, common-sense exception to legeslation as a loophole, readers may be under the false impression that it is acceptable to subvert restrictions and mix socially indoors.
 
 
 \subsubsection{Project scope}
 Fake news is not the focus of this project - by its nature, the entirety of a fake news article will be false, not just the headline. Therefore, to determine whether an article is fake, external sources would have to be consulted. Creating an algorithm for truth, while an open problem in computer science\footnote{\url{https://www.youtube.com/watch?v=leX541Dr2rU}}, is considered out of scope.
 
-Instead, this study will seek to evaluate to what extent a headline represents an article's body. It aims to identify sensationalism, exaggerated news stories and potentially some types of clickbait.
+Instead, this study seeks to evaluate the extent to which a headline depicts an article's body. Doing so will identify sensationalism and exaggerated news stories, clickbait that misrepresents the body text, and articles with misleading headlines. 
 
 \subsection{Impact of Incongruence}
-\citeA{karlsson2010} characterise online news both by its immediacy and interactivity, which has both shortened the news cycle and increased the competitivity between publishers. Therefore, publishers have to make the news more appealing to potential consumers, and employ deceptive tactics to draw readers in.
+\citeA{karlsson2010} characterise online news both by its immediacy and interactivity, which has both shortened the news cycle and increased the competitivity between publishers. Therefore, publishers have to make the news more appealing to potential consumers, and employ deceptive tactics to draw in readers.
 
 In the information-overload arena of online news reporting, a news article's body is less read than the headline \cite{gabielkov2016}. This means that an incongruent headline will be taken at face value, as readers will not have read the body that refutes its claim.
 
-For those that read beyond the headlines, incongruent articles can still be problematic; it's a well-established theory in psychology that first opinions matter \cite{digirolamo1997}. \citeA{ecker2014} ran a study that investigated how headlines affect the processing of the facts in the news:  "Information that is initially accepted as valid but is later found to be incorrect can have a persistent influence on people's memory and reasoning". Publishers can seek to sway individuals by using choice phrases to influence their mindset, which means that the same content could be interpreted in many ways depending on its headline \cite{reis2015}. This demonstrates that if a headline is incongruent, even if the individual reads the whole article there's a real possibility they will be left with a false impression of the facts.
+For those that read beyond the headlines, incongruent articles can still be problematic; it is a well-established theory in psychology that first opinions matter \cite{digirolamo1997}. \citeA{ecker2014} ran a study that investigated how headlines affect the processing of the facts in the news:  "Information that is initially accepted as valid but is later found to be incorrect can have a persistent influence on people's memory and reasoning". Publishers can seek to sway individuals by using choice phrases to influence their mindset, which means that the same content could be interpreted in many ways depending on its headline \cite{reis2015}. This demonstrates that if a headline is incongruent, even if the individual reads the whole article, there is a real possibility they will be left with a false impression of the facts.
 
 
 \subsection{Existing Approaches} \label{existing-approaches}
 
-\citeA{manjesh2017} used a range of different techniques to identify clickbait and were able to achieve a 98\% accuracy with a deep learning approach. However, they only analysed the article's headline and disregarded the body text.  They found that clickbait headlines tend to have elaborate sentences with various linguistic nuances, such as "21 Pics Of Celebs Photoshopped In The Best Way Ever. These Are EPIC". There's also a statement at the end to further strengthen the central claim of the headline.
+\citeA{manjesh2017} used a range of different techniques to identify clickbait and were able to achieve a 98\% accuracy with a deep learning approach. However, they only analysed the article's headline and disregarded the body text.  They found that clickbait headlines tend to have elaborate sentences with various linguistic nuances, such as "21 Pics Of Celebs Photoshopped In The Best Way Ever. These Are EPIC". There is also a statement at the end to further strengthen the central claim of the headline. The linguistic nuances found will complicate the process of creating the classifier. Classical NLP techniques are best suited to gain a general understanding of a piece of text, and are capable of spotting patterns and producing a broad summary, so may not perform optimally when tasked with detecting turns of phrase and subtle complications in language.
+
 
 \citeA{park2020} used a deep learning approach to create a web interface for detecting incongruent articles and managed to gain an accuracy of 86\%. However, for their dataset, they generated incongruent articles by swapping a different article's text in for the original. For example, Headline A would have a section of Article B's body. They then considered congruent headlines to be those with the original body text in place. This method could lead to false positives, and as the manufactured dataset does not reflect the incongruence in real-world articles, their algorithm's output lacks validity.
 
-The first Fake News Challenge (FNC1) was held by \citeA{pomerleaurao2017}. The challenge supplied a dataset of articles and encouraged contestants to create a classifier capable of detecting fake news. While there have not been subsequent challenges, 50 teams competed and produced a wide range of different approaches. 
+The first Fake News Challenge (FNC1) was held by \citeA{pomerleaurao2017}. The challenge supplied a dataset of articles and encouraged contestants to create a classifier capable of detecting fake news. While there have not been subsequent challenges, 50 teams competed and produced a wide range of different approaches. All of the documented classifiers use a machine learning approach, which could be an indication that limitations exist in using statistical NLP techniques for this kind of problem. However, this trend could also demonstrate that machine learning is very much in the zeitgeist and is commonly reached for tool.
+
+
+While a classical NLP approach has not yet been used to determine incongruent headlines, the absence of research does not suggest that it is an approach with a fundamental flaw or not up to the task. However, without a solid base to start from, the foundation of this approach will have to be formed before a classifier can be created.
+
 
 \subsubsection{Exisiting Labelled Datasets}
 A labelled dataset is a set of data points tagged with some information that identifies that data's characteristic. For example, a labelled dataset may consist of several articles that have been tagged with a level of congruence. Labelled datasets can be used to inform and train an algorithm to correctly tag unlabelled data or be used as a 'gold-standard' to determine a system's performance.
@@ -100,10 +105,13 @@ FakeNews Challenge & Discrete (Agree, Disagree, Discuss, Unrelated) & 50000 \\
 \label{tab:existing-data}
 \end{table}
 
+Without a high quality labelled dataset, it will be difficult to evaluate the efficacy of a classifier - each classified article will have to be manually checked to determine the headline's congruence, which would not be feasible due to both the time required and the subjectivity of congruence.
+
+
 \subsection{Natural Language Processing}
 Natural language processing (NLP) is a method of extracting information from a spoken or written language. 'Natural' here means the freer and less well defined human language, as opposed to strictly interpreted programming and mathematical notation. \cite{jackson2002}
 
- As natural language is filled with a range of nuances, assumptions and relies heavily on context, codifying it into a standardised, programmatic output poses a range of difficulties. For example, consider the following two sentences:
+As natural language is filled with a range of nuances and assumptions, and relies heavily on context, codifying it in a standardised, programmatic output poses a range of difficulties. For example, consider the following two sentences:
 
 \begin{itemize}
 	\item Apple's shares fell by 10\% in the last quarter
@@ -112,7 +120,7 @@ Natural language processing (NLP) is a method of extracting information from a s
 
 The word 'apple' appears in both sentences, but in one it refers to a multinational company, and in the other a tasty fruit. Only by using the context clues in the surrounding sentence can the word's meaning be deduced.
 
-Various approaches seek to tackle the problems inherent in determining the meaning and sentiment of natural language, each with their own characteristics, strengths and limitations. 
+Various approaches seek to tackle the problems inherent in determining the meaning and sentiment of natural language, each with its own characteristics, strengths and limitations. 
 
 \subsubsection{Statistical NLP}
 Statistical NLP creates metadata from a sentence and aims to extract meaning using statistical inference \cite{manning1999}. Several techniques can be used to create and interpret the metadata.
@@ -251,3 +259,13 @@ Conversely, abstractive approaches present the text's information in a new way, 
 
 \paragraph{}
 By using summarisation to generate a single sentence from an article of text (known as extreme summarisation), a headline can be generated. Abstractive summarisation is best suited for headline generation, as an understanding of the content of the article is required to distil it down so heavily \cite{hayashi2018}. Additionally, the nuances of headlines (for instance, using puns and sarcasm) may mean that the phrases in them do not appear in the main body, even though they are relevant to it. As this project focusses on classical NLP methods, as opposed to machine-learning approaches, abstractive summarisation is out of scope.
+
+\subsection{Summary}\label{lit:sum}
+
+From analysis and review of the existing literature, a range of findings have been discovered.
+
+Firstly, there is not a significant, high-quality dataset that can be used in pursuit of detecting headline incongruence. All existing datasets are poorly constructed or not suitably labelled. A new dataset will need to be constructed to help this project's aim.
+
+Another finding of this review is that classical NLP methods have not yet been applied to the problem of incongruence detection. This means that groundwork will have to be done to create a framework for conducting experiments, analysing the efficacy of the approach and implementing the classifier. The lack of a key cornerstone for the project will present a challenge; however, it also offers the excitement and potential for new discovery.
+
+As well as the gaps in research, however, key information regarding NLP approaches has been discovered. Several different techniques have been investigated and outlined, each of which has been evaluated within the context of congruence detection. Now experimentation can be conducted to determine how suited these approaches are, in the hopes they can be combined and collated to create a classifier capable of detecting incongruent headlines.

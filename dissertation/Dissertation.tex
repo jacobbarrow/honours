@@ -74,7 +74,7 @@
 
 \newif\iffluff
 
-\flufffalse
+\flufftrue
 
 %this starts the document
 \begin{document}
@@ -89,7 +89,15 @@
 \fi
 
 \begin{abstract}
-% fill the abstract in here
+
+Misinformation, fake news and clickbait are all currently in the zeitgeist. This dissertation defines what is meant by an incongruent headline and outlines the potential harms of their usage. 
+
+A dataset of 350,000 news articles spanning several decades is collected, and a framework for labelling their incongruence is implemented.
+
+The dissertation then attempts to create a classifier capable of detecting incongruent headlines using statistical natural language processing methods. Experiments are conducted using a range of techniques. A website for analysing the results of these experiments is created.
+
+A conclusion is reached that this approach is incapable of identifying incongruence due to the nuance present in natural language and suggests several areas for future research.
+
 \end{abstract}
 \pagebreak
 
@@ -106,7 +114,9 @@
 \newpage
 
 \section*{Acknowledgements}
-Insert acknowledgements here
+Thanks go to my supervisor, Dr Simon Wells, who supported the project from conception to delivery. Thanks also to the work of the countless other researchers upon which this dissertation is built.
+
+
 \newpage
 \fi
 
@@ -126,22 +136,28 @@ Insert acknowledgements here
 \newpage
 \begin{appendices}
 \iffluff
-\section{Project Overview}
+\section{Project Management}
+
+\begin{subappendices}
+\subsection{Initial Project Overview}
 \includepdf[pages=1]{../docs/IPO/IPO}
 
 
-\section{Second Formal Review Output}
-Insert a copy of the project review form you were given at the end of the review by the second marker
-
-\section{Diary Sheets (or other project management evidence)}
+\subsection{Gantt Chart}\label{app:gantt}
 
 \rotatebox{90}{
 \includegraphics[scale=1,page=1]{../docs/gantt/gantt}
 }
+
+\subsection{Project Diary}\label{app:diary}
+
 \includepdf[pages=1]{../docs/diary/diary}
 \includepdf[pages=2]{../docs/diary/diary}
 \includepdf[pages=3]{../docs/diary/diary}
+\includepdf[pages=4]{../docs/diary/diary}
 \fi
+
+\end{subappendices}
 \section{Data Labelling Ethics}
 
 
